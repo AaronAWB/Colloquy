@@ -8,7 +8,7 @@ function App() {
         <div className='content'>
           <Routes>
             <Route path='/' element={<Home />}></Route>
-            <Route path='/chat' element={<Search renderTweets={renderTweets}/>}></Route>
+            <Route path='/chat' element={<Chat />}></Route>
           </Routes>
         </div>
     </Router>
