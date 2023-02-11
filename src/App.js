@@ -1,16 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Chat from './pages/Chat'
+import Login from './pages/Login'
 import './App.css';
 
 function App() {
   return (
     <Router>
-        <Navbar />
-        <div className='content'>
-          <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/chat' element={<Chat />}></Route>
-          </Routes>
-        </div>
+      <Routes>
+        <Route path='/' element={<Login />}></Route>
+        <Route path='/chat' element={<Chat />}></Route>
+      </Routes>
     </Router>
   );
 }
