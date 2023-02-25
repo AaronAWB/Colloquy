@@ -1,6 +1,7 @@
-import { Login } from './Login'
-export { Login }
+import { Login } from './Login';
+import { Chat } from './Chat';
 
-import { Chat } from './Chat'
-export { Chat }
+export { Login, Chat }
+
+
 

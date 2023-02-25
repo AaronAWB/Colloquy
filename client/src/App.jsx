@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {Login} from '@Pages/Login'
-import {Chat} from '@Pages/Chat'
+import { Login } from '@Pages/index.js'
+import { Chat } from '@Pages/index.js'
 
 function App() {
   
