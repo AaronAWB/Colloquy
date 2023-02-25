@@ -1,6 +1,8 @@
 function Chat () {
     return (
-        <p>This is the chat page.</p>
+        <div className = 'container'>
+            <p>This is the chat page!!</p>
+        </div>
     )
 }
 
