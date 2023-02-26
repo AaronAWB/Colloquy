@@ -1,0 +1,13 @@
+.users-container {
+    border: solid grey 1px;
+    height: 643px;
+}
+
+.chat-container {
+    border: solid grey 1px;
+    height: 500px;
+}
+
+.message-input-container {
+    border: solid grey 1px;
+}
