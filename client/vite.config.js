@@ -13,5 +13,8 @@ export default defineConfig({
       '@Pages': path.resolve(__dirname, 'src/pages'),
       '@Styles': path.resolve(__dirname, 'src/styles')
     }
+  },
+  build: {
+    outDir: 'dist',
   }
 })
