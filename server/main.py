@@ -5,12 +5,25 @@ app = create_app()
 
 messages = [
     {
-        "User": "AaronAWB",
-        "Message": "This is a test message."
+        "id": 1,
+        "user": "AaronAWB",
+        "message": "This is a test message."
     },
     {
-        "User": "SecondUser",
-        "Message": "This is a message in response to the test message"
+        "id": 2,
+        "user": "SecondUser",
+        "message": "This is a message in response to the test message"
+    }
+]
+
+users = [
+    {
+        "id": 1,
+        "user": "AaronAWB"
+    },
+    {
+        "id": 2,
+        "user": "SecondUser"
     }
 ]
 
@@ -22,19 +35,24 @@ def return_current_messages():
 def create_message():
     request_data = request.json
     messages.append(request_data)
-    return 'Message added', 200
+    return 'Message added.', 200
 
-@app.get('/api/users')
+@app.route('/api/users', methods = ['GET'])
 def get_users():
-    return 'All users returned.'
+    return users, 200
 
-@app.get('/api/users/<id>')
-def get_user():
-    return 'Single user returned.'
+@app.route('/api/users/<id>', methods = ['GET'])
+def get_user(users, id):
+    for user in users:
+        if user["id"] == id:
+            return user
+    return "No user with that ID found.", 404
 
-@app.post('/api/users')
+@app.route('/api/users', methods = ['POST'])
 def create_user():
-    return 'New user created.'
+    request_data = request.json
+    users.append(request_data)
+    return 'User added.', 201
 
 if __name__ == '__main__':
     app.run(debug=True)
