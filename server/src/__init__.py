@@ -12,4 +12,3 @@ def create_app():
             return app.send_static_file('index.html')
 
     return app
-
