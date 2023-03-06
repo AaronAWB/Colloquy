@@ -1,21 +1,9 @@
 from flask import Flask, request
 from src import create_app
-import psycopg2
+
+import database
 
 app = create_app()
-
-messages = [
-    {
-        "id": 1,
-        "user": "AaronAWB",
-        "message": "This is a test message."
-    },
-    {
-        "id": 2,
-        "user": "SecondUser",
-        "message": "This is a message in response to the test message"
-    }
-]
 
 users = [
     {
@@ -29,8 +17,8 @@ users = [
 ]
 
 @app.route('/api/messages', methods = ['GET'])
-def return_current_messages():
-    return messages, 200
+def return_messages(messages):
+    return database.get_messages(messages), 200
 
 @app.route('/api/messages', methods = ['POST'])
 def create_message():
