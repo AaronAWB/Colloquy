@@ -1,5 +1,6 @@
 from flask import Flask, request
 from src import create_app
+import psycopg2
 
 app = create_app()
 
