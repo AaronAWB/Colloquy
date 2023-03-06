@@ -1,24 +1,13 @@
-from flask import Flask, request
-from src import create_app
+from flask import request
 
-import database
+from src import create_app
+import src.database
 
 app = create_app()
 
-users = [
-    {
-        "id": 1,
-        "user": "AaronAWB"
-    },
-    {
-        "id": 2,
-        "user": "SecondUser"
-    }
-]
-
 @app.route('/api/messages', methods = ['GET'])
 def return_messages(messages):
-    return database.get_messages(messages), 200
+    return src.database.get_table(messages), 200
 
 @app.route('/api/messages', methods = ['POST'])
 def create_message():
@@ -27,8 +16,8 @@ def create_message():
     return 'Message added.', 200
 
 @app.route('/api/users', methods = ['GET'])
-def get_users():
-    return users, 200
+def get_users(users):
+    return src.database.get_table(users), 200
 
 @app.route('/api/users/<id>', methods = ['GET'])
 def get_user(users, id):
