@@ -19,22 +19,11 @@ def get_table(table):
         cur.execute(sql_query)
         results = cur.fetchall()
 
-        cur.execute(f'SELECT count(*) FROM information_schema.columns WHERE table_name = {table}')
-        columns_num = cur.fetchone()[0]
-        print(f'The number of columns was: {columns_num}')
-
         cur.close()
         conn.close()
         print('Database connection closed')
-
-        results_list = []
-        for row in results:
-            row_dict = {}
-            for i in range(columns_num):
-                row_dict[cur.description[i].name] = row[i]
-            results_list.append(row_dict)
-    
-        return jsonify(results_list) 
+ 
+        return jsonify(results) 
     
     except(Exception, psycopg2.DatabaseError) as error:
         print(error)

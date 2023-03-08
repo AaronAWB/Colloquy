@@ -9,6 +9,7 @@ app = create_app()
 def return_messages():
     return get_table('messages'), 200
     
+    
 # @app.route('/api/messages', methods = ['POST'])
 # def create_message():
 #     request_data = request.json
@@ -16,8 +17,8 @@ def return_messages():
 #     return 'Message added.', 200
 
 @app.route('/api/users', methods = ['GET'])
-def get_users(users):
-    return src.database.get_table(users), 200
+def get_users():
+    return get_table('users'), 200
 
 @app.route('/api/users/<id>', methods = ['GET'])
 def get_user(users, id):
