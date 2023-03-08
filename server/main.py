@@ -1,19 +1,19 @@
 from flask import request
 
 from src import create_app
-import src.database
+from src.database import get_table
 
 app = create_app()
 
 @app.route('/api/messages', methods = ['GET'])
-def return_messages(messages):
-    return src.database.get_table(messages), 200
-
-@app.route('/api/messages', methods = ['POST'])
-def create_message():
-    request_data = request.json
-    messages.append(request_data)
-    return 'Message added.', 200
+def return_messages():
+    return get_table('messages'), 200
+    
+# @app.route('/api/messages', methods = ['POST'])
+# def create_message():
+#     request_data = request.json
+#     messages.append(request_data)
+#     return 'Message added.', 200
 
 @app.route('/api/users', methods = ['GET'])
 def get_users(users):
