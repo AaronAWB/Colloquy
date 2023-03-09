@@ -7,7 +7,11 @@ app = create_app()
 
 @app.route('/api/messages', methods = ['GET'])
 def return_messages():
-    return get_table('messages'), 200
+    table = get_table('messages')
+    if table is not None:
+        return table, 200
+    else:
+        return 'There are no messages.', 404
     
     
 # @app.route('/api/messages', methods = ['POST'])
@@ -18,7 +22,11 @@ def return_messages():
 
 @app.route('/api/users', methods = ['GET'])
 def get_users():
-    return get_table('users'), 200
+    table = get_table('users')
+    if table is not None:
+        return table, 200
+    else:
+        return 'There are no users.', 404
 
 @app.route('/api/users/<id>', methods = ['GET'])
 def get_user(users, id):
