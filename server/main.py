@@ -1,7 +1,7 @@
 from flask import request
 
 from src import create_app
-from src.database import get_table
+from src.database import get_table, add_message
 
 app = create_app()
 
@@ -14,11 +14,10 @@ def return_messages():
         return 'There are no messages.', 404
     
     
-# @app.route('/api/messages', methods = ['POST'])
-# def create_message():
-#     request_data = request.json
-#     messages.append(request_data)
-#     return 'Message added.', 200
+@app.route('/api/messages', methods = ['POST'])
+def create_message():
+    add_message()
+    return 'Message added.', 200
 
 @app.route('/api/users', methods = ['GET'])
 def get_users():
