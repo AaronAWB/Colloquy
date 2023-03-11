@@ -1,6 +1,6 @@
 import requests
 import os
-from flask import Flask, jsonify
+from flask import Flask
 import psycopg2
 
 from dotenv import load_dotenv; load_dotenv()
@@ -34,17 +34,17 @@ class DB_Connection():
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
         
-        return jsonify(resp)
+        return resp.json()
     
-    def add_message(self, user_id, text, date):
+    def add_message(self, user_id, text, created_date):
 
         try:
-            print('Connecting to database...')
+            print("Connecting to database...")
             conn = psycopg2.connect(self.connection_params)
-            print('Database connection established.')
+            print("Database connection established.")
 
             cur = conn.cursor()
-            sql_query = f'INSERT INTO messages ({user_id}, {text}, {date})'
+            sql_query = f'INSERT INTO messages ({user_id}, {text}, {created_date})'
             cur.execute(sql_query)
 
             cur.close()
@@ -52,6 +52,8 @@ class DB_Connection():
 
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+
+        return "Message added."
 
 
 
