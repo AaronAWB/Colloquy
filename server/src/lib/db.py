@@ -35,30 +35,24 @@ class DB_Connection():
             print(error)
         
         return jsonify(resp)
-
-
-# def add_message(user_id, text, date):
-#     with app.app_context():
-#         try:
-
-#             params = config()
-#             conn =  psycopg2.conntect(**params)
-
-#             cur = conn.cursor
-#             sql_query = f'INSERT INTO messages ({user_id}, {text}, {date})'
-#             cur.execute(sql_query)
-            
-#             cur.close()
-#             conn.close()
-
-#         except(Exception, psycopg2.DatabaseError) as error:
-#             print(error)
-
-# print(f'The get_table function returned: {get_table("messages")}')
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
     
+    def add_message(self, user_id, text, date):
+
+        try:
+            print('Connecting to database...')
+            conn = psycopg2.connect(self.connection_params)
+            print('Database connection established.')
+
+            cur = conn.cursor()
+            sql_query = f'INSERT INTO messages ({user_id}, {text}, {date})'
+            cur.execute(sql_query)
+
+            cur.close()
+            conn.close()
+
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+
 
 
 
