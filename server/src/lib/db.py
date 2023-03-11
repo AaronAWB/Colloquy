@@ -13,35 +13,29 @@ class DB_Connection():
             'Content-Type': 'application/json',
             'Accept': 'application/json'
             }
-        self.connection_params = {os.getenv()}
-
-
-# app = Flask(__name__)
+        self.connection_params = {os.getenv(**'CONNECTION_PARAMS')}
     
-# def get_table(table):
-#     with app.app_context():
-#         try: 
+    def get_table(self, table):
 
-#             params = config()
-#             print('Connecting to the PostgreSQL server...')
-#             conn = psycopg2.connect(**params)
-#             print('Connection established.')
+        try:
+            print('Connecting to database...')
+            conn = psycopg2.connect(self.connection_params)
+            print('Database connection established.')
+            
+            cur = conn.cursor()
+            sql_query = f'SELECT * FROM {table}'
+            cur.execute(sql_query)
+            resp = cur.fetchall()
+            
+            cur.close()
+            conn.close()
+            print ('Database connection closed.')
         
-#             cur = conn.cursor()
-
-#             sql_query = f'SELECT * FROM {table}'
-
-#             cur.execute(sql_query)
-#             results = cur.fetchall()
-
-#             cur.close()
-#             conn.close()
-#             print('Database connection closed')
-    
-#             return jsonify(results) 
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
         
-#         except(Exception, psycopg2.DatabaseError) as error:
-#             print(error)
+        return jsonify(resp)
+
 
 # def add_message(user_id, text, date):
 #     with app.app_context():
