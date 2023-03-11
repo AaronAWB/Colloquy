@@ -38,12 +38,12 @@ def add_message(user_id, text, date):
             conn =  psycopg2.conntect(**params)
 
             cur = conn.cursor
-            sql_query = f'INSERT INTO messages ({user_id, text, date})'
+            sql_query = f'INSERT INTO messages ({user_id}, {text}, {date})'
             cur.execute(sql_query)
             
             cur.close()
             conn.close()
-            
+
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
 

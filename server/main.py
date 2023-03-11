@@ -5,7 +5,7 @@ from src.database import get_table, add_message
 
 app = create_app()
 
-@app.route('/api/messages', methods = ['GET'])
+@app.get('/api/messages')
 def return_messages():
     table = get_table('messages')
     if table is not None:
@@ -13,10 +13,13 @@ def return_messages():
     else:
         return 'There are no messages.', 404
     
-    
-@app.route('/api/messages', methods = ['POST'])
+@app.post('/api/messages')
 def create_message():
-    add_message()
+    data = request.get_json()
+    userId = data["userId"]
+    text = data["text"]
+    createdDate = ["createdDate"]
+    add_message(userId, text, createdDate)
     return 'Message added.', 200
 
 @app.route('/api/users', methods = ['GET'])
