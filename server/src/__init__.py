@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Blueprint
 
 def create_app():
     app = Flask(__name__, static_url_path='/', static_folder='../../client/dist')
@@ -10,5 +10,8 @@ def create_app():
             return app.send_static_file(path)
         except:
             return app.send_static_file('index.html')
+        
+    api_bp = Blueprint('api', __name__, url_prefix='/api')
+    app.register_blueprint(api_bp)
 
     return app
