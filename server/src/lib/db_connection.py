@@ -5,7 +5,9 @@ from dotenv import load_dotenv; load_dotenv()
 class DB_Connection():
 
     def __init__(self) -> None:
-        self.params = f'postgresql://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@{os.getenv("DB_HOST")}:{os.getenv("DB_PORT")}/{os.getenv("DB_NAME")}'
+        self.params = f'''postgresql://{os.getenv("DB_USER")}:
+        {os.getenv("DB_PASSWORD")}@{os.getenv("DB_HOST")}:
+        {os.getenv("DB_PORT")}/{os.getenv("DB_NAME")}'''
     
     def get_table(self, table):
 
@@ -48,6 +50,7 @@ class DB_Connection():
 
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            resp = {}
         
         return resp
 

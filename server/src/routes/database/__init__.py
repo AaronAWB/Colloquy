@@ -1,15 +1,15 @@
-from flask_restx import Api, Resource, Request
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+from flask_restx import Api, Resource
 
 from src.lib.db_connection import db_connection
 
-api_bp = Blueprint('database', __name__, '/api')
+api_bp = Blueprint('api', __name__, '/api')
 api = Api(api_bp)
 
 @api.route('/users')
 class CreateUser(Resource):
     def post(self):
-        data = Request.json()
+        data = request.json()
         username = data["username"]
         user_id = data["user_id"]
         return db_connection.add_user(username, user_id), 201
@@ -27,7 +27,7 @@ class GetUser(Resource):
 @api.route('/messages')
 class CreateMessage(Resource):
     def post(self):
-        data = Request.json()
+        data = request.json()
         user_id = data["user_id"]
         text = data["text"]
         created_date = data["created_date"]
