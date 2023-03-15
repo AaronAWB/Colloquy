@@ -5,10 +5,8 @@ from dotenv import load_dotenv; load_dotenv()
 class DB_Connection:
 
     def __init__(self):
-        self.params = f'''postgresql://{os.getenv("DB_USER")}:
-        {os.getenv("DB_PASSWORD")}@{os.getenv("DB_HOST")}:
-        {os.getenv("DB_PORT")}/{os.getenv("DB_NAME")}'''
-    
+        self.params = os.getenv("CONNECTION_INFO_STRING")
+        
     def get_table(self, table):
 
         try:
@@ -32,7 +30,7 @@ class DB_Connection:
         
         return resp
     
-    def get_user(self, user_id):
+    def get_user(self, id):
         
         try:
             print('Connecting to database...')
@@ -40,7 +38,7 @@ class DB_Connection:
             print('Database connection established.')
             
             cur = conn.cursor()
-            sql_query = f'SELECT * FROM users WHERE user_id = {user_id}'
+            sql_query = f'SELECT * FROM users WHERE  = {id}'
             cur.execute(sql_query)
             resp = cur.fetchone()
 
@@ -94,7 +92,7 @@ class DB_Connection:
         return "User added."
         
 db_connection = DB_Connection()
-db_connection.get_table('users')
+
 
 
 
