@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv; load_dotenv()
 
 class DB_Connection:
@@ -14,7 +15,7 @@ class DB_Connection:
             conn = psycopg2.connect(self.params)
             print('Database connection established.')
             
-            cur = conn.cursor()
+            cur = conn.cursor(cursor_factory = RealDictCursor)
             sql_query = f'SELECT * FROM {table}'
             cur.execute(sql_query)
             resp = cur.fetchall()
