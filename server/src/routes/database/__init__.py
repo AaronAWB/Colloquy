@@ -9,10 +9,8 @@ api = Api(api_bp)
 @api.route('/users')
 class CreateUser(Resource):
     def post(self):
-        data = request
-        username = data["username"]
-        created_date = data["created_date"]
-        return db_connection.add_user(username, created_date), 201
+        user_data = request.get_json()
+        return db_connection.add_user(user_data), 201
 
 @api.route('/users')
 class GetAllUsers(Resource):

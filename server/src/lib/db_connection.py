@@ -38,7 +38,7 @@ class DB_Connection:
             conn = psycopg2.connect(self.params)
             print('Database connection established.')
             
-            cur = conn.cursor()
+            cur = conn.cursor(cursor_factory = RealDictCursor)
             sql_query = f'SELECT * FROM users WHERE  = {id}'
             cur.execute(sql_query)
             resp = cur.fetchone()
@@ -73,7 +73,9 @@ class DB_Connection:
 
         return "Message added."
     
-    def add_user(self, username, user_id):
+    def add_user(self, data):
+
+        print(data)
 
         try:
             print("Connecting to database...")
@@ -81,8 +83,8 @@ class DB_Connection:
             print("Database connection established.")
 
             cur = conn.cursor()
-            sql_query = f'INSERT INTO users ({username}, {user_id})'
-            cur.execute(sql_query)
+            sql_query = f'INSERT INTO users (username, createddate) VALUES (%s, %s)'
+            cur.execute(sql_query, (data["username"], data["createddate"]))
 
             cur.close()
             conn.close()
