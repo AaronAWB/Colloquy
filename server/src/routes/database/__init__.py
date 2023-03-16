@@ -25,11 +25,8 @@ class GetUser(Resource):
 @api.route('/messages')
 class CreateMessage(Resource):
     def post(self):
-        data = request.json()
-        user_id = data["user_id"]
-        text = data["text"]
-        created_date = data["created_date"]
-        return db_connection.add_message(user_id, text, created_date), 201
+        message_data = request.get_json()
+        return db_connection.add_message(message_data), 201
 
 @api.route('/messages')
 class GetAllMessages(Resource):
