@@ -83,16 +83,17 @@ class DB_Connection:
             print("Database connection established.")
 
             cur = conn.cursor()
-            sql_query = f'INSERT INTO users (username, createddate) VALUES (%s, %s)'
-            cur.execute(sql_query, (data["username"], data["createddate"]))
+            sql_query = f'INSERT INTO users ("Username") VALUES (%s)'
+            cur.execute(sql_query, (data["Username"],))
 
+            conn.commit()
             cur.close()
             conn.close()
         
         except(Exception, psycopg2.DatabaseError) as error:
             print(f'Error inserting data: {error}')
 
-        return f"User {data['username']} created on {data['createddate']}"
+        return f"User {data['Username']} created!"
         
 db_connection = DB_Connection()
 
