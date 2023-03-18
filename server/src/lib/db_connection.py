@@ -3,6 +3,8 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv; load_dotenv()
 
+from src.utils.helper_functions import remove_quotation_marks
+
 class DB_Connection:
 
     def __init__(self):
@@ -59,7 +61,7 @@ class DB_Connection:
         return row
 
     
-    def add_message(self, data):
+    def add_message(self, data, channel):
 
         try:
             print("Connecting to database...")
@@ -67,7 +69,7 @@ class DB_Connection:
             print("Database connection established.")
 
             cur = conn.cursor()
-            sql_query = f'INSERT INTO messages ("UserId", "Message") VALUES (%s, %s)'
+            sql_query = f'INSERT INTO {channel} ("UserId", "Message") VALUES (%s, %s)'
             cur.execute(sql_query, (data["UserId"], data["Message"]))
 
             conn.commit()
@@ -100,6 +102,37 @@ class DB_Connection:
             print(f'Error inserting data: {error}')
 
         return f"User {data['Username']} created!"
+    
+    def add_channel(self, data):
+
+        print(data)
+
+        try:
+            print("Connecting to database...")
+            conn = psycopg2.connect(self.params)
+            print("Database connection established.")
+
+            table_name = data["Channel_Name"]
+
+            cur = conn.cursor()
+            sql_query = f'''
+            CREATE TABLE {table_name} (
+                id SERIAL PRIMARY KEY,
+                UserId INTEGER REFERENCES users ("Id"),
+                Message TEXT,
+                CreatedAt TIMESTAMP WITH TIME ZONE
+            )
+            '''
+            cur.execute(sql_query)
+
+            conn.commit()
+            cur.close()
+            conn.close()
+        
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(f'Error inserting data: {error}')
+
+        return f"Channel {data['Channel_Name']} created!"
         
 db_connection = DB_Connection()
 
