@@ -70,6 +70,7 @@ class DB_Connection:
             sql_query = f'INSERT INTO messages (user_id, text, created_date) VALUES (s%, s%, s%)'
             cur.execute(sql_query, (data["user_id"], data["text"], data["createddate"]))
 
+            conn.commit()
             cur.close()
             conn.close()
 
