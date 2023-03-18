@@ -18,18 +18,21 @@ class DB_Connection:
             cur = conn.cursor(cursor_factory = RealDictCursor)
             sql_query = f'SELECT * FROM {table}'
             cur.execute(sql_query)
-            resp = cur.fetchall()
+            rows = cur.fetchall()
             
             cur.close()
             conn.close()
             print ('Database connection closed.')
-            print (resp)
+            print (rows)
+
+            for row in rows:
+                row['CreatedDate'] = row['CreatedDate'].isoformat()
         
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            resp = {}
+            rows = {}
         
-        return resp
+        return rows
     
     def get_user(self, id):
         
@@ -39,9 +42,11 @@ class DB_Connection:
             print('Database connection established.')
             
             cur = conn.cursor(cursor_factory = RealDictCursor)
-            sql_query = f'SELECT * FROM users WHERE  = {id}'
+            sql_query = f'SELECT * FROM users WHERE ("Id") = {id}'
             cur.execute(sql_query)
-            resp = cur.fetchone()
+            
+            row = cur.fetchone()
+            row["CreatedDate"] = row["CreatedDate"].isoformat()
 
             cur.close()
             conn.close()
@@ -49,9 +54,9 @@ class DB_Connection:
 
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            resp = {}
+            row = {}
         
-        return resp
+        return row
 
     
     def add_message(self, data):
