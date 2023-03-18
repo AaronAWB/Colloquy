@@ -1,4 +1,3 @@
-import json
 from flask import Blueprint, request
 from flask_restx import Api, Resource
 
@@ -48,4 +47,4 @@ class GetChannel(Resource):
 @api.route('/channels')
 class GetAllChannels(Resource):
     def get(self):
-        return db_connection.get_all_channels(), 200
+        return db_connection.get_table('channels'), 200

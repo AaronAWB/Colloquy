@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint
 from flask_restx import Api
 
-from src.routes.database import CreateUser, GetAllUsers, GetUser, CreateMessage, GetAllMessages
+from src.routes.database import CreateUser, GetAllUsers, GetUser, CreateMessage, GetAllMessages, CreateChannel, GetChannel, GetAllChannels
 
 def create_app():
     app = Flask(__name__, static_url_path='/', static_folder='../../client/dist')
@@ -22,6 +22,10 @@ def create_app():
     api.add_resource(GetUser, '/users/<user_id>')
     api.add_resource(CreateMessage, '/messages')
     api.add_resource(GetAllMessages, '/messages')
+    api.add_resource(CreateChannel, '/channels')
+    api.add_resource(GetChannel, '/channels/<channel_name>')
+    api.add_resource(GetAllChannels, '/channels')
+
     
     app.register_blueprint(api_bp)   
 
