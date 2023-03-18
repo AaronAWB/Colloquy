@@ -26,7 +26,7 @@ class DB_Connection:
             print (rows)
 
             for row in rows:
-                row['CreatedDate'] = row['CreatedDate'].isoformat()
+                row['CreatedAt'] = row['CreatedAt'].isoformat()
         
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
@@ -46,7 +46,7 @@ class DB_Connection:
             cur.execute(sql_query)
             
             row = cur.fetchone()
-            row["CreatedDate"] = row["CreatedDate"].isoformat()
+            row['CreatedAt'] = row['CreatedAt'].isoformat()
 
             cur.close()
             conn.close()
@@ -67,8 +67,8 @@ class DB_Connection:
             print("Database connection established.")
 
             cur = conn.cursor()
-            sql_query = f'INSERT INTO messages (user_id, text, created_date) VALUES (s%, s%, s%)'
-            cur.execute(sql_query, (data["user_id"], data["text"], data["createddate"]))
+            sql_query = f'INSERT INTO messages ("UserId", "Message") VALUES (%s, %s)'
+            cur.execute(sql_query, (data["UserId"], data["Message"]))
 
             conn.commit()
             cur.close()
