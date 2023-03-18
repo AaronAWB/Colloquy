@@ -12,16 +12,16 @@ class CreateUser(Resource):
     def post(self):
         user_data = request.get_json()
         return db_connection.add_user(user_data), 201
+    
+@api.route('/users/<user_id>')
+class GetUser(Resource):
+    def get(self, user_id):
+        return db_connection.get_user(user_id), 200
 
 @api.route('/users')
 class GetAllUsers(Resource):
     def get(self):
         return db_connection.get_table('users'), 200
-
-@api.route('/users/<user_id>')
-class GetUser(Resource):
-    def get(self, user_id):
-        return db_connection.get_user(user_id), 200
 
 @api.route('/messages')
 class CreateMessage(Resource):
@@ -33,3 +33,19 @@ class CreateMessage(Resource):
 class GetAllMessages(Resource):
     def get(self):
         return db_connection.get_table('messages'), 200
+    
+@api.route('/channels')
+class CreateChannel(Resource):
+    def post(self):
+        channel_data = request.get_json()
+        return db_connection.add_channel(channel_data), 201
+
+@api.route('/channels/<channel_name>')
+class GetChannel(Resource):
+    def get(self, channel_name):
+        return db_connection.get_channel(channel_name), 200
+    
+@api.route('/channels')
+class GetAllChannels(Resource):
+    def get(self):
+        return db_connection.get_all_channels(), 200
