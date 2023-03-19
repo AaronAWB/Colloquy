@@ -3,8 +3,6 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv; load_dotenv()
 
-from src.utils.helper_functions import remove_quotation_marks
-
 class DB_Connection:
 
     def __init__(self):
@@ -115,17 +113,23 @@ class DB_Connection:
             table_name = data["Channel_Name"]
 
             cur = conn.cursor()
-            sql_query = f'''
-            CREATE TABLE {table_name} (
-                id SERIAL PRIMARY KEY,
-                UserId INTEGER REFERENCES users ("Id"),
-                Message TEXT,
-                CreatedAt TIMESTAMP WITH TIME ZONE
+            create_channel_query = f'''
+            CREATE TABLE IF NOT EXISTS {table_name} (
+                "Id" SERIAL PRIMARY KEY,
+                "UserId" INTEGER REFERENCES users ("Id"),
+                "Message" TEXT,
+                "CreatedAt" TIMESTAMP WITH TIME ZONE
+                    DEFAULT CURRENT_TIMESTAMP
             )
             '''
-            cur.execute(sql_query)
-
+           
+            cur.execute(create_channel_query)
             conn.commit()
+
+            channels_update_query = f"INSERT INTO channels (\"ChannelName\") VALUES ('{table_name}')"
+            cur.execute(channels_update_query)
+            conn.commit()
+            
             cur.close()
             conn.close()
         
