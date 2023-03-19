@@ -40,6 +40,6 @@ class CreateChannel(Resource):
         return db_connection.add_channel(channel_data), 201
 
 @api.route('/channels')
-class GetAllChannels(Resource):
+class GetChannels(Resource):
     def get(self):
         return db_connection.get_table('channels'), 200

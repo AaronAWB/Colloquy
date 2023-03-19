@@ -59,6 +59,9 @@ class DB_Connection:
     
     def add_message(self, data, channel):
 
+        print(data)
+        print(channel)
+
         try:
             
             conn = psycopg2.connect(self.params)
