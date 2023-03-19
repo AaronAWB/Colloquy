@@ -1,13 +1,27 @@
+body {
+    background-color: rgb(18, 18, 18) !important;
+}
+
+h2 {
+    color: white;
+}
+
 .users-container {
-    border: solid grey 1px;
-    height: 590px;
+    min-height: 600px;
+    background: rgb(28, 28, 28) !important;
 }
 
 .chat-container {
-    border: solid grey 1px;
-    height: 500px;
+    min-height: 600px;
+    background: black !important;
+    display: flex;
+    flex-direction: column;
 }
 
-.message-input-container {
-    border: solid grey 1px;
+.message-bar-container {
+    margin-top: auto;
+}
+
+.message-bar {
+    background: black;
 }
