@@ -11,13 +11,12 @@ class DB_Connection:
     def get_table(self, table):
 
         try:
-            print('Connecting to database...')
-            conn = psycopg2.connect(self.params)
-            print('Database connection established.')
             
+            conn = psycopg2.connect(self.params)
             cur = conn.cursor(cursor_factory = RealDictCursor)
-            sql_query = f'SELECT * FROM {table}'
-            cur.execute(sql_query)
+            
+            query = f'SELECT * FROM {table}'
+            cur.execute(query)
             rows = cur.fetchall()
             
             cur.close()
@@ -37,13 +36,12 @@ class DB_Connection:
     def get_user(self, id):
         
         try:
-            print('Connecting to database...')
-            conn = psycopg2.connect(self.params)
-            print('Database connection established.')
             
+            conn = psycopg2.connect(self.params)
             cur = conn.cursor(cursor_factory = RealDictCursor)
-            sql_query = f'SELECT * FROM users WHERE ("Id") = {id}'
-            cur.execute(sql_query)
+            
+            query = f'SELECT * FROM users WHERE ("Id") = {id}'
+            cur.execute(query)
             
             row = cur.fetchone()
             row['CreatedAt'] = row['CreatedAt'].isoformat()
@@ -62,13 +60,12 @@ class DB_Connection:
     def add_message(self, data, channel):
 
         try:
-            print("Connecting to database...")
+            
             conn = psycopg2.connect(self.params)
-            print("Database connection established.")
-
             cur = conn.cursor()
-            sql_query = f'INSERT INTO {channel} ("UserId", "Message") VALUES (%s, %s)'
-            cur.execute(sql_query, (data["UserId"], data["Message"]))
+            
+            query = f'INSERT INTO {channel} ("UserId", "Message") VALUES (%s, %s)'
+            cur.execute(query, (data["UserId"], data["Message"]))
 
             conn.commit()
             cur.close()
@@ -84,13 +81,12 @@ class DB_Connection:
         print(data)
 
         try:
-            print("Connecting to database...")
+    
             conn = psycopg2.connect(self.params)
-            print("Database connection established.")
-
             cur = conn.cursor()
-            sql_query = f'INSERT INTO users ("Username") VALUES (%s)'
-            cur.execute(sql_query, (data["Username"],))
+            
+            query = f'INSERT INTO users ("Username") VALUES (%s)'
+            cur.execute(query, (data["Username"],))
 
             conn.commit()
             cur.close()
@@ -106,10 +102,9 @@ class DB_Connection:
         print(data)
 
         try:
-            print("Connecting to database...")
+            
             conn = psycopg2.connect(self.params)
-            print("Database connection established.")
-
+            
             table_name = data["Channel_Name"]
 
             cur = conn.cursor()
@@ -122,7 +117,6 @@ class DB_Connection:
                     DEFAULT CURRENT_TIMESTAMP
             )
             '''
-           
             cur.execute(create_channel_query)
             conn.commit()
 
