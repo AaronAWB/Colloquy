@@ -11,7 +11,9 @@ function Chat () {
             <Row>
             <Col md={3}>
                 <div className='users-container rounded shadow p-3 mt-5 d-flex flex-column'>
-                    <h2>Channels</h2>
+                    <div className='panel-header'>
+                        <h4>Channels</h4>
+                    </div>
                     <div className='flex-grow-1'>
             
                     </div>
@@ -19,8 +21,7 @@ function Chat () {
             </Col>
             <Col md={6}>
                 <div className='chat-container rounded shadow p-3 mb-3 mt-5'>
-                    <h2>Chat</h2>
-                    <div className = 'message-bar-container'>
+                    <div className='message-bar-container'>
                         <InputGroup>
                             <Form.Control className='message-bar' type='text' id='messageInput' />
                             <Button type='submit' variant='primary'>Send</Button>
@@ -31,7 +32,9 @@ function Chat () {
             </Col>
             <Col md={3}>
                 <div className='users-container rounded shadow p-3 mt-5 d-flex flex-column'>
-                    <h2>Users</h2>
+                    <div className='panel-header'>
+                        <h4>Active Users</h4>
+                    </div>
                     <div className='flex-grow-1'>
             
                     </div>

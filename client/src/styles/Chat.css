@@ -2,17 +2,19 @@ body {
     background-color: rgb(18, 18, 18) !important;
 }
 
-h2 {
-    color: white;
+.panel-header {
+    color: rgb(218, 215, 215);
+    display: flex;
+    justify-content: center;
 }
 
 .users-container {
-    min-height: 600px;
+    min-height: 700px;
     background: rgb(28, 28, 28) !important;
 }
 
 .chat-container {
-    min-height: 600px;
+    min-height: 700px;
     background: black !important;
     display: flex;
     flex-direction: column;
