@@ -1,0 +1,31 @@
+.content-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-box {
+    height: 350px !important;
+    width: 500px !important;
+    background-color: rgb(28, 28, 28) !important;
+}
+
+.login-title {
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.form-lable {
+    color: grey;
+}
+
+.signup-prompt {
+    color: grey;
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+}
