@@ -1,10 +1,16 @@
+import os
 from flask import Flask, Blueprint
 from flask_restx import Api
+from flask_jwt_extended import create_access_token, jwt_required, JWTManager
+from dotenv import load_dotenv; load_dotenv()
 
 from src.routes.database import CreateUser, GetAllUsers, GetUser, CreateMessage, GetAllMessages, CreateChannel, GetChannels
 
 def create_app():
     app = Flask(__name__, static_url_path='/', static_folder='../../client/dist')
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRECT_KEY')
+    app.config['JWT_ALGORITHM'] = 'HS256'
+    jwt = JWTManager(app)
 
     @app.route('/', defaults={'path': ''})
     @app.route('/<string:path>')

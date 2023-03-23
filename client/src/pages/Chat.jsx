@@ -19,23 +19,13 @@ function Chat () {
                     </div>
                 </div>
             </Col>
-            <Col md={6}>
+            <Col md={9}>
                 <div className='chat-container rounded shadow p-3 mb-3 mt-5'>
                     <div className='message-bar-container'>
                         <InputGroup>
                             <Form.Control className='message-bar' type='text' id='messageInput' />
                             <Button type='submit' variant='primary'>Send</Button>
                         </InputGroup>
-                    </div>
-                </div>
-            </Col>
-            <Col md={3}>
-                <div className='users-container rounded shadow p-3 mt-5 d-flex flex-column'>
-                    <div className='panel-header'>
-                        <h4>Active Users</h4>
-                    </div>
-                    <div className='flex-grow-1'>
-            
                     </div>
                 </div>
             </Col>

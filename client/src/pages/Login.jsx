@@ -1,4 +1,4 @@
-import { useState } from React;
+import { useState } from "React";
 import axios from 'axios';
 import { Container, Form, Button } from 'react-bootstrap';
 import '@Styles/Login.css'
@@ -43,7 +43,7 @@ function Login () {
                         onChange = {e => setPassword(e.target.value)} />
                 </Form.Group>
                 <div className ='button-container'>
-                    <Button className='mt-3' variant="primary" type="submit">Login</Button>
+                    <Button className='mt-3 me-4' variant="primary" type="submit">Sign In</Button>
                     <Button className='mt-3' variant="success">Continue as Guest</Button>
                 </div>
             </Form>
