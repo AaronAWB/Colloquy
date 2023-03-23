@@ -23,6 +23,11 @@
     color: grey;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .signup-prompt {
     color: grey;
     padding-top: 15px;
