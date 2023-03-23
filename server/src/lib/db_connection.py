@@ -6,7 +6,7 @@ from dotenv import load_dotenv; load_dotenv()
 class DB_Connection:
 
     def __init__(self):
-        self.params = os.getenv("CONNECTION_INFO_STRING")
+        self.params = os.getenv("DB_CONNECTION_INFO_STRING")
         
     def get_table(self, table):
 
@@ -21,8 +21,6 @@ class DB_Connection:
             
             cur.close()
             conn.close()
-            print ('Database connection closed.')
-            print (rows)
 
             for row in rows:
                 row['CreatedAt'] = row['CreatedAt'].isoformat()
@@ -48,19 +46,33 @@ class DB_Connection:
 
             cur.close()
             conn.close()
-            print ('Database connection closed.')
 
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             row = {}
         
         return row
+    
+    def authenticate_user(self, username, password):
 
+        try:
+
+            conn = psycopg2.connect(self.params)
+            cur = conn.cursor()
+
+            query = f'SELECT * FROM users WHERE ("Username") = {username} AND ("password") = {password}'
+            cur.execute(query)
+
+            row = cur.fetchone()
+
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            row = {}
+
+        return False if row is None else True
+    
     
     def add_message(self, data, channel):
-
-        print(data)
-        print(channel)
 
         try:
             

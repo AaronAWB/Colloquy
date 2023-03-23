@@ -10,7 +10,7 @@ function Login () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('/login', {username: username, password: password})
+        axios.post('/login/auth', {username: username, password: password})
         .then (resp => {
             localStorage.setItem('access_token', resp.data.access_token);
             window.location.href = '/chat';

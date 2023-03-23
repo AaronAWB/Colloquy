@@ -1,5 +1,5 @@
 import os
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, request
 from flask_restx import Api
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager
 from dotenv import load_dotenv; load_dotenv()
@@ -19,6 +19,12 @@ def create_app():
             return app.send_static_file(path)
         except:
             return app.send_static_file('index.html')
+        
+    @app.post('login/auth')
+    def login():
+        username = request.json['username']
+        password = request.json['password']
+        
         
     api_bp = Blueprint('api', __name__, url_prefix='/api')
     api = Api(api_bp)
