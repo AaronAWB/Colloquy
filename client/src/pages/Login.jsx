@@ -6,11 +6,17 @@ import '@Styles/Login.css'
 function Login () {
 
     const [username, setUsername] = useState("");
-    const [passowrd, setPassowrd] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleAuthentication = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        axios.post('/login', {username: username, password: password})
+        .then (resp => {
+            localStorage.setItem('access_token', resp.data.access_token);
+            window.location.href = '/chat';
 
+        })
+        .catch(error => console.log(error));
     }
 
     return (
@@ -19,19 +25,27 @@ function Login () {
             <div className='login-title'>
                 <h2>Login</h2>
             </div>
-            <Form className='mt-3'>
-                <Form.Group controlId="formBasicUsername" className='mt-3'>
+            <Form className='mt-3' onSubmit={handleSubmit}>
+                <Form.Group controlId='formBasicUsername' className='mt-3'>
                     <Form.Label className ='form-lable'>Username:</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username"  />
+                    <Form.Control 
+                        type='text' 
+                        placeholder="Enter username" 
+                        value={username}
+                        onChange={e => setUsername(e.target.value)} />
                 </Form.Group>
-                <Form.Group controlId="formBasicPassword" className='mt-3'>
+                <Form.Group controlId='formBasicPassword' className='mt-3'>
                     <Form.Label className='form-lable'>Password:</Form.Label>
-                    <Form.Control type="password" placeholder="Enter password" />
+                    <Form.Control 
+                        type='password' 
+                        placeholder="Enter password" 
+                        value={password} 
+                        onChange = {e => setPassword(e.target.value)} />
                 </Form.Group>
-            <div className ='button-container'>
-                <Button className='mt-3' variant="primary" type="submit">Login</Button>
-                <Button className='mt-3' variant="success" type="submit">Continue as Guest</Button>
-            </div>
+                <div className ='button-container'>
+                    <Button className='mt-3' variant="primary" type="submit">Login</Button>
+                    <Button className='mt-3' variant="success">Continue as Guest</Button>
+                </div>
             </Form>
             <div className='signup-prompt'>
                 <p>Don't have an account? <a>Sign up</a></p>
