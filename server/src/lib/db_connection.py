@@ -67,7 +67,7 @@ class DB_Connection:
 
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            row = {}
+            row = None
 
         return False if row is None else True
     
@@ -92,8 +92,6 @@ class DB_Connection:
         return "Message added."
     
     def add_user(self, data):
-
-        print(data)
 
         try:
     
