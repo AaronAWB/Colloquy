@@ -10,8 +10,9 @@ api = Api(api_bp)
 @api.route('/users')
 class CreateUser(Resource):
     def post(self):
-        user_data = request.get_json()
-        return db_connection.add_user(user_data), 201
+        username = request.json['username']
+        password = request.json['password']
+        return db_connection.add_user(username, password), 201
     
 @api.route('/users/<user_id>')
 class GetUser(Resource):

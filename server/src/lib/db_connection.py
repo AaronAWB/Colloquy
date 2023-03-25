@@ -91,24 +91,28 @@ class DB_Connection:
 
         return "Message added."
     
-    def add_user(self, data):
+    def add_user(self, username, password):
+
+        print(username)
+        print(password)
 
         try:
     
             conn = psycopg2.connect(self.params)
             cur = conn.cursor()
             
-            query = f'INSERT INTO users ("Username") VALUES (%s)'
-            cur.execute(query, (data["Username"],))
+            query = f'INSERT INTO users ("Username", "Password") VALUES (%s, %s)'
+            cur.execute(query, (username, password))
 
             conn.commit()
             cur.close()
             conn.close()
         
         except(Exception, psycopg2.DatabaseError) as error:
-            print(f'Error inserting data: {error}')
+            return {"Error": {error}}
 
-        return f"User {data['Username']} created!"
+        success_message = f"User {username} created!"
+        return {"Success": success_message}
     
     def add_channel(self, data):
 
