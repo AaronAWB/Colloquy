@@ -10,7 +10,7 @@ function Chat () {
         <Container>
             <Row>
             <Col md={3}>
-                <div className='users-container rounded shadow p-3 mt-5 d-flex flex-column'>
+                <div className='channels-container rounded shadow p-3 mt-5 d-flex flex-column'>
                     <div className='panel-header'>
                         <h4>Channels</h4>
                     </div>

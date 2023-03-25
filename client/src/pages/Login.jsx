@@ -26,24 +26,25 @@ function Login () {
             </div>
             <Form className='mt-3' onSubmit={handleSubmit}>
                 <Form.Group controlId='formBasicUsername' className='mt-3'>
-                    <Form.Label className ='form-lable'>Username:</Form.Label>
                     <Form.Control 
                         type='text' 
-                        placeholder="Enter username" 
+                        placeholder="Username" 
                         value={username}
-                        onChange={e => setUsername(e.target.value)} />
+                        onChange={e => setUsername(e.target.value)}
+                        className='text-center' 
+                        />
                 </Form.Group>
                 <Form.Group controlId='formBasicPassword' className='mt-3'>
-                    <Form.Label className='form-lable'>Password:</Form.Label>
                     <Form.Control 
                         type='password' 
-                        placeholder="Enter password" 
+                        placeholder="Password" 
                         value={password} 
-                        onChange = {e => setPassword(e.target.value)} />
+                        onChange={e => setPassword(e.target.value)} 
+                        className='text-center'
+                        />     
                 </Form.Group>
                 <div className ='button-container'>
-                    <Button className='mt-3 me-4' variant="primary" type="submit">Sign In</Button>
-                    <Button className='mt-3' variant="success">Continue as Guest</Button>
+                    <Button className='mt-3' variant="primary" type="submit">Sign In</Button>
                 </div>
             </Form>
             <div className='signup-prompt'>

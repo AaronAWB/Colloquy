@@ -8,14 +8,14 @@ body {
     justify-content: center;
 }
 
-.users-container {
+.channels-container {
     min-height: 700px;
     background: rgb(28, 28, 28) !important;
 }
 
 .chat-container {
     min-height: 700px;
-    background: black !important;
+    background: rgb(28, 28, 28) !important;
     display: flex;
     flex-direction: column;
 }
