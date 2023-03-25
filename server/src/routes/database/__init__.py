@@ -46,7 +46,7 @@ class GetChannels(Resource):
     def get(self):
         return db_connection.get_table('channels'), 200
     
-@api.route('/login')
+@api.route('/authenticate')
 class AuthenticateUser(Resource):
     def post(self):
         username = request.json['username']

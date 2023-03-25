@@ -8,7 +8,7 @@ export default class AuthHelperMethods {
     }
 
 login = (username, password ) => {
-return axios.post('/api/login', {username: username, password: password})
+return axios.post('/api/authenticate', {username: username, password: password})
     .then (res => {
         this.setToken(res.access_token)
     })
@@ -75,9 +75,6 @@ fetch = (url, options) => {
           throw error;
         }
       };
-        
-
-
 }
 
 
