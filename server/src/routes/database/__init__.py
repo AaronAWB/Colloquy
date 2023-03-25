@@ -57,4 +57,4 @@ class AuthenticateUser(Resource):
         
         access_token = str(create_access_token(identity=username))
         response_data = {'access_token': access_token}
-        return jsonify(response_data), 200
+        return response_data, 200

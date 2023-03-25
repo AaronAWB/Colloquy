@@ -60,8 +60,8 @@ class DB_Connection:
             conn = psycopg2.connect(self.params)
             cur = conn.cursor()
 
-            query = f'SELECT * FROM users WHERE ("Username") = {username} AND ("password") = {password}'
-            cur.execute(query)
+            query = f'SELECT * FROM users WHERE ("Username") = %s AND ("Password") = %s'
+            cur.execute(query, (username, password))
 
             row = cur.fetchone()
 
@@ -69,6 +69,7 @@ class DB_Connection:
             print(error)
             row = None
 
+        print(row)
         return False if row is None else True
     
     
@@ -92,9 +93,6 @@ class DB_Connection:
         return "Message added."
     
     def add_user(self, username, password):
-
-        print(username)
-        print(password)
 
         try:
     
