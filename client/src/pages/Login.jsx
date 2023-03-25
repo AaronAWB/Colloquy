@@ -44,7 +44,7 @@ function Login () {
                         />     
                 </Form.Group>
                 <div className ='button-container'>
-                    <Button className='mt-3' variant="primary" type="submit">Sign In</Button>
+                    <Button className='mt-3 login-button' variant="primary" type="submit">Sign In</Button>
                 </div>
             </Form>
             <div className='signup-prompt'>
