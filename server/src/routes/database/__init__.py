@@ -1,5 +1,6 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_restx import Api, Resource
+from flask_jwt_extended import create_access_token, jwt_required
 
 from src.lib.db_connection import db_connection
 
@@ -43,9 +44,15 @@ class CreateChannel(Resource):
 class GetChannels(Resource):
     def get(self):
         return db_connection.get_table('channels'), 200
-
-@api.route('/login/authentication')
+    
+@api.route('/login')
 class AuthenticateUser(Resource):
     def get(self):
-        user_data = request.get_json()
-        return db_connection.authenticate_user(user_data)
+        username = request.json['username']
+        password = request.json['password']
+
+        if not db_connection.authenticate_user(username, password):
+            return jsonify({'fail': 'invalid credentials'}), 401
+        
+        access_token = create_access_token(identity=username)
+        return jsonify({'access_token': access_token}), 200

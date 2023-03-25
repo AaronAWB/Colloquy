@@ -1,17 +1,18 @@
 import os
-from flask import Flask, Blueprint, request, jsonify
+from flask import Flask, Blueprint
 from flask_restx import Api
-from flask_jwt_extended import create_access_token, jwt_required, JWTManager
+from flask_jwt_extended import JWTManager
+
 from dotenv import load_dotenv; load_dotenv()
 
-from src.lib.db_connection import db_connection as db
-from src.routes.database import CreateUser, GetAllUsers, GetUser, CreateMessage, GetAllMessages, CreateChannel, GetChannels
+from src.routes.database import CreateUser, GetAllUsers, GetUser, CreateMessage, GetAllMessages, CreateChannel, GetChannels, AuthenticateUser
+
+app = Flask(__name__, static_url_path='/', static_folder='../../client/dist')
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+app.config['JWT_ALGORITHM'] = 'HS256'
+jwt = JWTManager(app)
 
 def create_app():
-    app = Flask(__name__, static_url_path='/', static_folder='../../client/dist')
-    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-    app.config['JWT_ALGORITHM'] = 'HS256'
-    jwt = JWTManager(app)
 
     @app.route('/', defaults={'path': ''})
     @app.route('/<string:path>')
@@ -21,17 +22,6 @@ def create_app():
         except:
             return app.send_static_file('index.html')
         
-    @app.route('/login', methods = ['POST'])
-    def login():
-        username = request.json['username']
-        password = request.json['password']
-
-        if not db.authenticate_user(username, password):
-            return jsonify({'fail': 'invalid credentials'}), 401
-        
-        access_token = create_access_token(identity=username)
-        return jsonify({'access_token': access_token}), 200
-
     api_bp = Blueprint('api', __name__, url_prefix='/api')
     api = Api(api_bp)
     
@@ -42,6 +32,7 @@ def create_app():
     api.add_resource(GetAllMessages, '/messages')
     api.add_resource(CreateChannel, '/channels')
     api.add_resource(GetChannels, '/channels')
+    api.add_resource(AuthenticateUser, '/login')
     
 
     app.register_blueprint(api_bp)   
