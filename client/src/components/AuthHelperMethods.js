@@ -61,7 +61,7 @@ fetch = (url, options) => {
     headers["Authorization"] = "Bearer " + this.getToken();
     }
     
-    return axios({url, headers, ...options})
+    return axios.get({url, headers, ...options})
         .then(this._checkStatus)
         .then(res => res.data);
     };

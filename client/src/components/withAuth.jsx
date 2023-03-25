@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import AuthHelperMethods from "./AuthHelperMethods";
 
 export default function withAuth(AuthComponent) {
-  const Auth = new AuthHelperMethods();
 
-  function AuthWrapped(props) {
+  const auth = new AuthHelperMethods();
+
+  function AuthWrapped() {
+
     const [confirm, setConfirm] = useState(null);
     const [loaded, setLoaded] = useState(false);
+    
+    const navigate = useNavigate()
 
     useEffect(() => {
-      if (!Auth.loggedIn()) {
-        props.history.replace("/login");
+      if (!auth.loggedIn()) {
+        navigate.push("/login");
       } else {
         try {
-          const confirm = Auth.getConfirm();
+          const confirm = auth.getConfirm();
           console.log("confirmation is:", confirm);
           setConfirm(confirm);
           setLoaded(true);
         } catch (err) {
           console.log(err);
-          Auth.logout();
-          props.history.replace("/login");
+          auth.logout();
+          navigate.push("/login");
         }
       }
     }, []);
@@ -29,7 +34,7 @@ export default function withAuth(AuthComponent) {
       if (confirm) {
         console.log("confirmed!");
         return (
-          <AuthComponent history={props.history} confirm={confirm} />
+          <AuthComponent confirm={confirm} />
         );
       } else {
         console.log("not confirmed!");

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import { AuthMethods } from '@Components/index';
@@ -17,13 +17,13 @@ function Login () {
         auth.login(username, password)
         .then(res => {
             if (res === false) {
-              return alert("Sorry those credentials don't exist!");
+                return alert("Sorry those credentials don't exist!");
             }
             navigate.push("/");
-          })
-          .catch(err => {
-            alert(err);
-          });
+            })
+            .catch(err => {
+                alert(err);
+            });
         };
     
     return (
