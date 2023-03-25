@@ -11,8 +11,8 @@ function Login () {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('/api/login', {username: username, password: password})
-        .then (resp => {
-            localStorage.setItem('access_token', resp.data.access_token);
+        .then (res => {
+            localStorage.setItem('access_token', res.data.access_token);
             window.location.href = '/chat';
         })
         .catch(error => console.log(error));

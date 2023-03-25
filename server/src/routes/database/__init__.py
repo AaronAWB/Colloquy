@@ -47,12 +47,13 @@ class GetChannels(Resource):
     
 @api.route('/login')
 class AuthenticateUser(Resource):
-    def get(self):
+    def post(self):
         username = request.json['username']
         password = request.json['password']
 
         if not db_connection.authenticate_user(username, password):
-            return jsonify({'fail': 'invalid credentials'}), 401
+            return {'access_denied': 'invalid credentials'}, 401
         
-        access_token = create_access_token(identity=username)
-        return jsonify({'access_token': access_token}), 200
+        access_token = str(create_access_token(identity=username))
+        response_data = {'access_token': access_token}
+        return jsonify(response_data), 200
