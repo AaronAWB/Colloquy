@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Login } from '@Pages/index'
-import { Chat } from '@Pages/index'
+import { Login, Chat } from '@Pages/index'
+import { withAuth }from '@Components/index'
 
 function App() {
   
@@ -14,4 +14,4 @@ function App() {
   )
 }
 
-export default App
+export default withAuth(App)

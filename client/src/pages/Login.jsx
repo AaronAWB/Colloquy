@@ -1,6 +1,7 @@
-import { useState } from "React";
-import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
+import { AuthMethods } from '@Components/index';
 import '@Styles/Login.css'
 
 function Login () {
@@ -8,16 +9,23 @@ function Login () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('/api/login', {username: username, password: password})
-        .then (res => {
-            localStorage.setItem('access_token', res.data.access_token);
-            window.location.href = '/chat';
-        })
-        .catch(error => console.log(error));
-    }
+    const auth = new AuthMethods();
+    const navigate = useNavigate();
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        auth.login(username, password)
+        .then(res => {
+            if (res === false) {
+              return alert("Sorry those credentials don't exist!");
+            }
+            navigate.push("/");
+          })
+          .catch(err => {
+            alert(err);
+          });
+        };
+    
     return (
         <Container className='content-container'> 
             <Container className="login-box rounded shadow">
