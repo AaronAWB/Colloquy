@@ -1,6 +1,6 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from flask_restx import Api, Resource
-from flask_jwt_extended import create_access_token, jwt_required
+from flask_jwt_extended import create_access_token
 
 from src.lib.db_connection import db_connection
 

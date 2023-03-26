@@ -32,7 +32,7 @@ def create_app():
     api.add_resource(GetAllMessages, '/messages')
     api.add_resource(CreateChannel, '/channels')
     api.add_resource(GetChannels, '/channels')
-    api.add_resource(AuthenticateUser, '/login')
+    api.add_resource(AuthenticateUser, '/authenticate')
     
 
     app.register_blueprint(api_bp)   

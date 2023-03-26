@@ -3,21 +3,20 @@ import decode from 'jwt-decode';
 
 
 export default class AuthHelperMethods {
-    constructor(domain) {
-        this.domain = domain
-    }
+   
+login = async (username, password) => {
 
-login = (username, password ) => {
-return axios.post('/api/authenticate', {username: username, password: password})
-    .then (res => {
-        this.setToken(res.access_token)
-    })
-    .catch(error => console.log(error));
-}
+    try {
+        const res = await axios.post('/api/authenticate', {username, password});
+        this.setToken(res.access_token);
+    } catch (error) {
+        console.log(`Authentication error: ${error}`);
+        }
+    }
 
 loggedIn = () => {
     const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
+        return !!token && !this.isTokenExpired(token);
     }
 
 isTokenExpired = token => {
@@ -25,9 +24,10 @@ isTokenExpired = token => {
         const decoded = decode(token);
         if (decoded.exp < Date.now() / 1000) {
         return true;
-        } else return false;
-    } catch (err) {
-        console.log("expired check failed! Line 42: AuthService.js");
+        }
+        return false;
+    } catch (error) {
+        console.log("expired check failed!");
         return false;
         }
     };
@@ -46,19 +46,19 @@ logout = () => {
 
 getConfirm = () => {
     let answer = decode(this.getToken());
-    console.log("Recieved answer!");
-    return answer;
+        console.log("Recieved answer!");
+        return answer;
     };
     
 fetch = (url, options) => {
 
     const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/json"
+        Accept: "application/json",
+        "Content-Type": "application/json"
     };
     
     if (this.loggedIn()) {
-    headers["Authorization"] = "Bearer " + this.getToken();
+        headers["Authorization"] = "Bearer " + this.getToken();
     }
     
     return axios.get({url, headers, ...options})
@@ -68,11 +68,11 @@ fetch = (url, options) => {
 
     _checkStatus = res => {
         if (res.status >= 200 && res.status < 300) {
-          return response;
+            return response;
         } else {
-          const error = new Error(res.statusText);
-          error.res = res;
-          throw error;
+            const error = new Error(res.statusText);
+            error.res = res;
+            throw error;
         }
       };
 }

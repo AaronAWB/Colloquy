@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthHelperMethods from "./AuthHelperMethods";
+import { AuthMethods } from '@Components/index';
 
 export default function withAuth(AuthComponent) {
 
-  const auth = new AuthHelperMethods();
+  const auth = new AuthMethods();
 
   function AuthWrapped() {
 
@@ -15,33 +15,33 @@ export default function withAuth(AuthComponent) {
 
     useEffect(() => {
       if (!auth.loggedIn()) {
-        navigate.push("/login");
+          navigate('/login');
       } else {
-        try {
-          const confirm = auth.getConfirm();
-          console.log("confirmation is:", confirm);
-          setConfirm(confirm);
-          setLoaded(true);
-        } catch (err) {
-          console.log(err);
-          auth.logout();
-          navigate.push("/login");
-        }
+          try {
+              const confirm = auth.getConfirm();
+              console.log("confirmation is:", confirm);
+              setConfirm(confirm);
+              setLoaded(true);
+        } catch (error) {
+              console.log(`UseEffect error: ${error}`);
+              auth.logout();
+              navigate('/login');
+          }
       }
     }, []);
 
     if (loaded === true) {
-      if (confirm) {
-        console.log("confirmed!");
-        return (
-          <AuthComponent confirm={confirm} />
-        );
-      } else {
-        console.log("not confirmed!");
-        return null;
-      }
+        if (confirm) {
+            console.log("confirmed!");
+            return (
+              <AuthComponent confirm={confirm} />
+            );
+        } else {
+            console.log("not confirmed!");
+            return null;
+        }
     } else {
-      return null;
+        return null;
     }
   }
 
