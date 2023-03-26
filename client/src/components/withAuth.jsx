@@ -4,37 +4,37 @@ import { AuthMethods } from '@Components/index';
 
 export default function withAuth(AuthComponent) {
 
-  const auth = new AuthMethods();
+	const auth = new AuthMethods();
 
-  function AuthWrapped() {
+	function AuthWrapped() {
 
-    const [confirm, setConfirm] = useState(null);
-    const [loaded, setLoaded] = useState(false);
-    
-    const navigate = useNavigate()
+		const [confirm, setConfirm] = useState(null);
+		const [loaded, setLoaded] = useState(false);
 
-    useEffect(() => {
-      if (!auth.loggedIn()) {
-          navigate('/login');
-      } else {
-          try {
-              const confirm = auth.getConfirm();
-              console.log("confirmation is:", confirm);
-              setConfirm(confirm);
-              setLoaded(true);
-        } catch (error) {
-              console.log(`UseEffect error: ${error}`);
-              auth.logout();
-              navigate('/login');
-          }
-      }
-    }, []);
+    	const navigate = useNavigate()
+
+    	useEffect(() => {
+      		if (!auth.loggedIn()) {
+          		navigate('/login');
+      		} else {
+          		try {
+					const confirm = auth.getConfirm();
+					console.log("confirmation is:", confirm);
+					setConfirm(confirm);
+					setLoaded(true);
+        	} catch (error) {
+				console.log(`UseEffect error: ${error}`);
+				auth.logout();
+				navigate('/login');
+				}
+     		}
+    	}, []);
 
     if (loaded === true) {
         if (confirm) {
             console.log("confirmed!");
             return (
-              <AuthComponent confirm={confirm} />
+            	<AuthComponent confirm={confirm} />
             );
         } else {
             console.log("not confirmed!");
@@ -45,5 +45,5 @@ export default function withAuth(AuthComponent) {
     }
   }
 
-  return AuthWrapped;
+  	return AuthWrapped;
 }

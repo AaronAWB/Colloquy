@@ -17,9 +17,9 @@ function Login () {
         auth.login(username, password)
         .then(res => {
             if (res === false) {
-                return alert("Sorry those credentials don't exist!");
+                return alert('Invalid credentials.');
             }
-            navigate.push("/");
+            navigate('/');
             })
             .catch(err => {
                 alert(err);
