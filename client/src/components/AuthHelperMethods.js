@@ -9,8 +9,10 @@ login = async (username, password) => {
     try {
         const res = await axios.post('/api/authenticate', {username, password});
         this.setToken(res.access_token);
-    } catch (error) {
-        console.log(`Authentication error: ${error}`);
+        return true
+    } catch (err) {
+        console.log(`Authentication error: ${err}`);
+        return false
         }
     }
 
@@ -26,8 +28,8 @@ isTokenExpired = token => {
         return true;
         }
         return false;
-    } catch (error) {
-        console.log("expired check failed!");
+    } catch (err) {
+        console.log(`Failed expiration check: ${err}`);
         return false;
         }
     };

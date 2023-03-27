@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import { AuthMethods } from '@Components/index';
 import '@Styles/Login.css'
 
-function Login () {
+function Login ({ confirm, loaded }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -12,17 +12,21 @@ function Login () {
     const auth = new AuthMethods();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (confirm && loaded) {navigate('/')};
+    }, []);
+
     const handleSubmit = e => {
         e.preventDefault();
         auth.login(username, password)
         .then(res => {
             if (res === false) {
-                return alert('Invalid credentials.');
-            }
-            navigate('/');
+                console.log('Invalid credentials.');
+                }
+            navigate('/login');
             })
-            .catch(err => {
-                alert(err);
+        .catch(err => {
+            alert(err);
             });
         };
     

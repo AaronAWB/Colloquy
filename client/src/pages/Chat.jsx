@@ -1,11 +1,17 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import '@Styles/Chat.css'
 
-function renderMessage (user, message) {
-    return <p>{user.name}: {message}</p>
-}
 
-function Chat () {
+function Chat ({ confirm, loaded }) {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!confirm || !loaded) {navigate('/login')};
+    }, []);
+
     return (
         <Container>
             <Row>

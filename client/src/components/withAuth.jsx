@@ -18,32 +18,39 @@ export default function withAuth(AuthComponent) {
           		navigate('/login');
       		} else {
           		try {
-					const confirm = auth.getConfirm();
-					console.log("confirmation is:", confirm);
-					setConfirm(confirm);
+					const confirm_data = auth.getConfirm();
+					console.log("Confirmation is:", confirm_data);
+					setConfirm(confirm_data);
 					setLoaded(true);
-        	} catch (error) {
-				console.log(`UseEffect error: ${error}`);
+        	} catch (err) {
+				console.log(`AuthWrapped useEffect error: ${err}`);
 				auth.logout();
 				navigate('/login');
 				}
      		}
     	}, []);
 
-    if (loaded === true) {
-        if (confirm) {
-            console.log("confirmed!");
-            return (
-            	<AuthComponent confirm={confirm} />
-            );
-        } else {
-            console.log("not confirmed!");
-            return null;
-        }
-    } else {
-        return null;
-    }
-  }
+		return (
+			<AuthComponent confirm={ confirm } loaded={ loaded } />
+		)
+
+	}
+//     if (loaded === true) {
+//         if (confirm) {
+//             console.log("confirmed!");
+//             return (
+//             	<AuthComponent confirm={ confirm } />
+//             );
+//         } else {
+//             console.log("not confirmed!");
+//             return (
+// 				<AuthComponent confirm={ null } />
+// 			);
+//         }
+//     } else {
+//         return null;
+//     }
+//   }
 
   	return AuthWrapped;
 }
