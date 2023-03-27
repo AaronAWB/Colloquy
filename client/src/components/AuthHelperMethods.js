@@ -7,14 +7,22 @@ export default class AuthHelperMethods {
 login = async (username, password) => {
 
     try {
-        const res = await axios.post('/api/authenticate', {username, password});
+        const res = await axios.post('/api/authenticate', {
+        username: `${username}`,
+        password: `${password}`
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        console.log(res)
         this.setToken(res.access_token);
         return true
     } catch (err) {
         console.log(`Authentication error: ${err}`);
         return false
         }
-    }
+    };
 
 loggedIn = () => {
     const token = this.getToken();
