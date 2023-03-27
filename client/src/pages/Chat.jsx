@@ -5,11 +5,11 @@ import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import '@Styles/Chat.css'
 
 
-function Chat () {
+function Chat ({ token }) {
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
-    const user = auth.decode().sub;
+    let user = token ? token.sub : 'Guest';
 
     useEffect(() => {
         if (!auth.loggedIn()) {navigate('/login')};
