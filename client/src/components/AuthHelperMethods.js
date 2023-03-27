@@ -17,9 +17,10 @@ login = async (username, password) => {
           'Content-Type': 'application/json'
         }
       })
-        console.log(res)
-        this.setToken(res.data.access_token);
-        console.log(res.data.access_token)
+        const res_data = res.data
+        console.log(res_data)
+        this.setToken(res_data.access_token);
+        console.log(res_data.access_token)
         return true
     } catch (err) {
         console.log(`Authentication error: ${err}`);
