@@ -67,31 +67,6 @@ decode = () => {
         return answer;
     };
     
-fetch = (url, options) => {
-
-    const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-    };
-    
-    if (this.loggedIn()) {
-        headers["Authorization"] = "Bearer " + this.getToken();
-    }
-    
-    return axios.get({url, headers, ...options})
-        .then(this._checkStatus)
-        .then(res => res.data);
-    };
-
-    _checkStatus = res => {
-        if (res.status >= 200 && res.status < 300) {
-            return response;
-        } else {
-            const error = new Error(res.statusText);
-            error.res = res;
-            throw error;
-        }
-      };
 }
 
 
