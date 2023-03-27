@@ -2,6 +2,11 @@ body {
     background-color: rgb(18, 18, 18) !important;
 }
 
+.logout-button-container {
+    display: flex;
+    justify-content: end;
+}
+
 .panel-header {
     color: rgb(218, 215, 215);
     display: flex;

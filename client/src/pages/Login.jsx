@@ -16,20 +16,16 @@ function Login () {
         if (auth.loggedIn()) {navigate('/')};
     }, []);
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        auth.login(username, password)
-        .then(res => {
-            if (res === false) {
-                console.log('Invalid credentials.');
-                }
-            navigate('/login');
-            })
-        .catch(err => {
-            alert(err);
-            });
+        try {
+            const login = await auth.login(username, password);
+            if (login === true) {navigate('/')}
+        } catch (err) {
+            console.log(`Login failed: ${err}`)
+            }
         };
-    
+        
     return (
         <Container className='content-container'> 
             <Container className="login-box rounded shadow">

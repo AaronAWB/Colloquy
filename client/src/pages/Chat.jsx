@@ -14,8 +14,20 @@ function Chat () {
         if (!auth.loggedIn()) {navigate('/login')};
     }, []);
 
+    const handleLogout = e => {
+        e.preventDefault();
+        auth.logout();
+        navigate('/login')
+        };
+
     return (
+        
         <Container>
+            <div className='logout-button-container'>
+                <Button variant='danger' className ='logout-button mt-3' onClick={handleLogout}>
+                    Logout
+                </Button>
+            </div>
             <Row>
             <Col md={3}>
                 <div className='channels-container rounded shadow p-3 mt-5 d-flex flex-column'>
@@ -39,6 +51,7 @@ function Chat () {
             </Col>
             </Row>
         </Container>
+        
     );
 }
 
