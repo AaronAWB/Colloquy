@@ -13,7 +13,7 @@ function Login ({ confirm, loaded }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (confirm && loaded) {navigate('/')};
+        if (auth.loggedIn()) {navigate('/')};
     }, []);
 
     const handleSubmit = e => {

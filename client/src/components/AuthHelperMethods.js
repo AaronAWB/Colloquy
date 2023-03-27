@@ -6,17 +6,20 @@ export default class AuthHelperMethods {
    
 login = async (username, password) => {
 
+    console.log('login function triggered')
+
     try {
         const res = await axios.post('/api/authenticate', {
-        username: `${username}`,
-        password: `${password}`
+        username: username,
+        password: password
       }, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
         console.log(res)
-        this.setToken(res.access_token);
+        this.setToken(res.data.access_token);
+        console.log(res.data.access_token)
         return true
     } catch (err) {
         console.log(`Authentication error: ${err}`);
@@ -43,7 +46,10 @@ isTokenExpired = token => {
     };
 
 setToken = access_token => {
-    localStorage.setItem('access_token', access_token);
+    if (access_token) {
+        localStorage.setItem('access_token', access_token);
+    } 
+    console.log('Invalid access token.');
     };
 
 getToken = () => {
@@ -56,7 +62,7 @@ logout = () => {
 
 getConfirm = () => {
     let answer = decode(this.getToken());
-        console.log("Recieved answer!");
+        console.log("Token confirmed.");
         return answer;
     };
     

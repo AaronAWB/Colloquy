@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthMethods } from '@Components/index';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import '@Styles/Chat.css'
 
 
 function Chat ({ confirm, loaded }) {
 
+    const auth = new AuthMethods();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!confirm || !loaded) {navigate('/login')};
+        if (!auth.loggedIn()) {navigate('/login')};
     }, []);
 
     return (

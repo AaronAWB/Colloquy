@@ -35,22 +35,6 @@ export default function withAuth(AuthComponent) {
 		)
 
 	}
-//     if (loaded === true) {
-//         if (confirm) {
-//             console.log("confirmed!");
-//             return (
-//             	<AuthComponent confirm={ confirm } />
-//             );
-//         } else {
-//             console.log("not confirmed!");
-//             return (
-// 				<AuthComponent confirm={ null } />
-// 			);
-//         }
-//     } else {
-//         return null;
-//     }
-//   }
-
+	
   	return AuthWrapped;
 }
