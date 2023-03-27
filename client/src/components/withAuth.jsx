@@ -8,7 +8,7 @@ export default function withAuth(AuthComponent) {
 
 	function AuthWrapped() {
 
-		const [confirm, setConfirm] = useState(null);
+		const [decoded_token, setDecoded_Token] = useState(null);
 		const [loaded, setLoaded] = useState(false);
 
     	const navigate = useNavigate()
@@ -18,9 +18,9 @@ export default function withAuth(AuthComponent) {
           		navigate('/login');
       		} else {
           		try {
-					const confirm_data = auth.getConfirm();
-					console.log("Confirmation is:", confirm_data);
-					setConfirm(confirm_data);
+					const decoded_data = auth.decode();
+					console.log("Token is:", decoded_data);
+					setDecoded_Token(decoded_data);
 					setLoaded(true);
         	} catch (err) {
 				console.log(`AuthWrapped useEffect error: ${err}`);
@@ -31,10 +31,10 @@ export default function withAuth(AuthComponent) {
     	}, []);
 
 		return (
-			<AuthComponent confirm={ confirm } loaded={ loaded } />
+			<AuthComponent token={ decoded_token } loaded={ loaded } />
 		)
 
 	}
-	
+
   	return AuthWrapped;
 }

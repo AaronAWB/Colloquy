@@ -37,11 +37,11 @@ isTokenExpired = token => {
     try {
         const decoded = decode(token);
         if (decoded.exp < Date.now() / 1000) {
-        return true;
+            return true;
         }
         return false;
     } catch (err) {
-        console.log(`Failed expiration check: ${err}`);
+        console.log(`Token expired: ${err}`);
         return false;
         }
     };
@@ -61,9 +61,9 @@ logout = () => {
     localStorage.removeItem('access_token');
     };
 
-getConfirm = () => {
+decode = () => {
     let answer = decode(this.getToken());
-        console.log("Token confirmed.");
+        console.log("Token decoded.");
         return answer;
     };
     

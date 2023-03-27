@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import '@Styles/Chat.css'
 
 
-function Chat ({ confirm, loaded }) {
+function Chat () {
 
     const auth = new AuthMethods();
     const navigate = useNavigate();

@@ -4,7 +4,7 @@ import { Container, Form, Button } from 'react-bootstrap';
 import { AuthMethods } from '@Components/index';
 import '@Styles/Login.css'
 
-function Login ({ confirm, loaded }) {
+function Login () {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
