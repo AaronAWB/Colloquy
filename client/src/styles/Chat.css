@@ -5,6 +5,12 @@ body {
 .logout-button-container {
     display: flex;
     justify-content: end;
+    align-items: center;
+}
+
+.user-id {
+    padding-right: 20px;
+    color: rgb(218, 215, 215);
 }
 
 .panel-header {

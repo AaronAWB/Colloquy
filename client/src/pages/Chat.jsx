@@ -9,6 +9,7 @@ function Chat () {
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
+    const user = auth.decode().sub;
 
     useEffect(() => {
         if (!auth.loggedIn()) {navigate('/login')};
@@ -23,8 +24,11 @@ function Chat () {
     return (
         
         <Container>
-            <div className='logout-button-container'>
-                <Button variant='danger' className ='logout-button mt-3' onClick={handleLogout}>
+            <div className='logout-button-container mt-3'>
+                <p className='user-id'>
+                    Logged in as: {user}
+                </p>
+                <Button variant='danger' className ='logout-button' onClick={handleLogout}>
                     Logout
                 </Button>
             </div>

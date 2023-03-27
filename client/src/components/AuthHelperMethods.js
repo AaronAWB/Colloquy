@@ -63,7 +63,7 @@ logout = () => {
 
 decode = () => {
     let answer = decode(this.getToken());
-        console.log("Token decoded.");
+        console.log(`Token decoded: ${answer}`);
         return answer;
     };
     
