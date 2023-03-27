@@ -52,11 +52,14 @@ function Login () {
                         />     
                 </Form.Group>
                 <div className ='button-container'>
-                    <Button className='mt-3 login-button' variant="primary" type="submit">Sign In</Button>
+                    <Button className='mt-3 login-button' variant='secondary' type='submit'>Sign In</Button>
                 </div>
             </Form>
             <div className='signup-prompt'>
                 <p>Don't have an account? <a>Sign up</a></p>
+            </div>
+            <div className='guest-prompt'>
+                <p>Continue as <a>Guest</a></p>
             </div>
         </Container>
     </Container>

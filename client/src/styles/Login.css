@@ -13,7 +13,7 @@
 }
 
 .login-title {
-    color: white;
+    color: #03DAC6;
     display: flex;
     justify-content: center;
     padding-top: 10px;
@@ -32,9 +32,11 @@
     width: 150px;
 }
 
-.signup-prompt {
+.signup-prompt, .guest-prompt {
     color: grey;
     padding-top: 15px;
     display: flex;
     justify-content: center;
 }
+
+

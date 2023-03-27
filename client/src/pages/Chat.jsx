@@ -34,7 +34,7 @@ function Chat ({ token }) {
             </div>
             <Row>
             <Col md={3}>
-                <div className='channels-container rounded shadow p-3 mt-5 d-flex flex-column'>
+                <div className='channels-container rounded shadow p-3 mt-3 d-flex flex-column'>
                     <div className='panel-header'>
                         <h4>Channels</h4>
                     </div>
@@ -44,7 +44,7 @@ function Chat ({ token }) {
                 </div>
             </Col>
             <Col md={9}>
-                <div className='chat-container rounded shadow p-3 mb-3 mt-5'>
+                <div className='chat-container rounded shadow p-3 mb-3 mt-3'>
                     <div className='message-bar-container'>
                         <InputGroup>
                             <Form.Control className='message-bar' type='text' id='messageInput' />
