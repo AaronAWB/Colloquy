@@ -16,7 +16,7 @@ function Login () {
         if (auth.loggedIn()) {navigate('/')};
     }, []);
 
-    const handleSubmit = async e => {
+    const handleLogin = async e => {
         e.preventDefault();
         try {
             const login = await auth.login(username, password);
@@ -25,6 +25,16 @@ function Login () {
             console.log(`Login failed: ${err}`)
             }
         };
+    
+    const handleGuestLogin = async e => {
+        e.preventDefault();
+        try {
+            const guestLogin = await auth.login("Guest", "GuestPwd");
+            if (guestLogin === true) {navigate('/')}
+        } catch (err) {
+            console.log(`Guest login failed ${err}`)
+            }
+    };
         
     return (
         <Container className='content-container'> 
@@ -32,7 +42,7 @@ function Login () {
             <div className='login-title'>
                 <h2>Login</h2>
             </div>
-            <Form className='mt-3' onSubmit={handleSubmit}>
+            <Form className='mt-3' onSubmit={handleLogin}>
                 <Form.Group controlId='formBasicUsername' className='mt-3'>
                     <Form.Control 
                         type='text' 
@@ -59,7 +69,7 @@ function Login () {
                 <p>Don't have an account? <a>Sign up</a></p>
             </div>
             <div className='guest-prompt'>
-                <p>Continue as <a>Guest</a></p>
+                <p>Continue as <a href='#' onClick={handleGuestLogin}>Guest</a></p>
             </div>
         </Container>
     </Container>
