@@ -6,8 +6,6 @@ export default class AuthHelperMethods {
    
 login = async (username, password) => {
 
-    console.log('login function triggered')
-
     try {
         const res = await axios.post('/api/authenticate', {
         username: username,
@@ -18,7 +16,6 @@ login = async (username, password) => {
         }
       })
         const res_data = res.data
-        console.log(res_data)
         this.setToken(res_data.access_token);
         console.log(res_data.access_token)
         return true
@@ -27,11 +24,6 @@ login = async (username, password) => {
         return false
         }
     };
-
-guestLogin = () => {
-    this.setToken('guest');
-    return true
-}
 
 loggedIn = () => {
     const token = this.getToken();
@@ -55,7 +47,7 @@ setToken = access_token => {
     if (access_token) {
         localStorage.setItem('access_token', access_token);
     } 
-    console.log('Invalid access token.');
+    console.log('Error setting token to local storage.');
     };
 
 getToken = () => {
@@ -67,9 +59,8 @@ logout = () => {
     };
 
 decode = () => {
-    let answer = decode(this.getToken());
-        console.log(`Token decoded: ${answer}`);
-        return answer;
+    let decoded_token = decode(this.getToken());
+        return decoded_token;
     };
     
 }

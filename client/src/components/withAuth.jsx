@@ -22,10 +22,9 @@ export default function withAuth(AuthComponent) {
 					console.log("Token is:", decoded_data);
 					setDecoded_Token(decoded_data);
 					setLoaded(true);
-        	} catch (err) {
-				console.log(`AuthWrapped useEffect error: ${err}`);
-				auth.logout();
-				navigate('/login');
+        		} catch (err) {
+					auth.logout();
+					navigate('/login');
 				}
      		}
     	}, []);
