@@ -9,7 +9,7 @@ function Chat ({ token }) {
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
-    const decoded_token = auth.decode(token);
+    const decoded_token = auth.decode();
     const user = decoded_token.sub;
 
     useEffect(() => {
