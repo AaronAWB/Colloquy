@@ -9,7 +9,8 @@ function Chat ({ token }) {
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
-    let user = token.sub;
+    const decoded_token = auth.decode(token);
+    const user = decoded_token.sub;
 
     useEffect(() => {
         if (!auth.loggedIn()) {navigate('/login')};
