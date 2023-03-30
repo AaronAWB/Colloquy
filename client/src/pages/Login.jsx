@@ -72,9 +72,9 @@ function Login () {
             <div className='signup-prompt'>
                 <p>Don't have an account? <a href='#' onClick={handleShowModal}>Sign up</a></p>
                 <SignUp 
-                show={showModal}
-                hide={handleHideModal}
-                />
+                    show={showModal}
+                    hide={handleHideModal}
+                    />
             </div>
             <div className='guest-prompt'>
                 <p>Continue as <a href='#' onClick={handleGuestLogin}>Guest</a></p>
