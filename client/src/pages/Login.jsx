@@ -25,7 +25,7 @@ function Login () {
         } catch (err) {
             console.log(`Login failed: ${err}`)
             }
-        };
+    };
     
     const handleGuestLogin = async e => {
         e.preventDefault();

@@ -1,15 +1,25 @@
 import { useState } from 'react'
+import axios from 'axios'
 import { Modal, Button, Form } from 'react-bootstrap';
 
 function SignUp({ hide, show }) {
 
-    const [username, setUsername] = ("");
-    const [password, setPassword] = ("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        hide();
-    }
+        let path = '/api/users'
+        try {
+            const res = await axios.post(path, {username, password});
+            console.log(res);
+            setUsername("");
+            setPassword("");
+            hide();
+        } catch (err) {
+            console.log(err)
+        }
+    };
 
     return (
         <Modal centered show={show} onHide={hide}>
