@@ -11,6 +11,7 @@ function Chat ({ token }) {
     const navigate = useNavigate();
     const decoded_token = auth.decode();
     const user = decoded_token.sub;
+    const isGuest = user === 'Guest'
 
     useEffect(() => {
         if (!auth.loggedIn()) {navigate('/login')};
@@ -49,7 +50,7 @@ function Chat ({ token }) {
                     <div className='message-bar-container'>
                         <InputGroup>
                             <Form.Control className='message-bar' type='text' id='messageInput' />
-                            <Button type='submit' variant='primary'>Send</Button>
+                            <Button type='submit' variant='primary' disabled={isGuest}>Send</Button>
                         </InputGroup>
                     </div>
                 </div>

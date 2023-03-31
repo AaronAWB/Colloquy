@@ -1,0 +1,16 @@
+.signup-modal {
+    background-color: rgb(18, 18, 18) !important;
+    border: none !important;
+}
+
+.signup-modal-header, .signup-modal-footer {
+    background-color: black !important;
+}
+
+.modal-title {
+    color:#03DAC6 !important;
+}
+
+.signup-modal-body, .signup-modal-form {
+    background-color: rgb(28, 28, 28) !important;
+}

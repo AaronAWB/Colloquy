@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { Modal, Button, Form } from 'react-bootstrap';
+import '@Styles/SignUp.css'
 
 function SignUp({ hide, show }) {
 
@@ -22,14 +23,15 @@ function SignUp({ hide, show }) {
     };
 
     return (
-        <Modal centered show={show} onHide={hide}>
-            <Modal.Header>
-                <Modal.Title>Sign Up</Modal.Title>
+        <Modal className='signup-modal' centered show={show} onHide={hide} backdrop='static'>
+            <Modal.Header className='signup-modal-header'>
+                <Modal.Title className='modal-title'>Sign Up</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group className='mt-4'>
+            <Modal.Body className='signup-modal-body'>
+                <Form className='signup-modal-form' onSubmit={handleSubmit}>
+                    <Form.Group className='signup-modal-form mt-4'>
                         <Form.Control 
+                            className='signup-modal-form'
                             type='text' 
                             placeholder="Enter new username"
                             value={username}
@@ -37,8 +39,9 @@ function SignUp({ hide, show }) {
                              />
                     </Form.Group>
 
-                    <Form.Group className='mt-4 mb-4'>
+                    <Form.Group className='signup-modal-form mt-4 mb-4'>
                         <Form.Control 
+                            className='signup-modal-form'
                             type='password' 
                             placeholder="Enter new password" 
                             value={password}
@@ -47,7 +50,7 @@ function SignUp({ hide, show }) {
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='signup-modal-footer'>
                 <Button variant='secondary' data-dismiss='modal' onClick={hide}>
                     Close
                 </Button>
