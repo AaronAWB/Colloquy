@@ -5,7 +5,7 @@
 
 .signup-modal-header, .signup-modal-footer {
     background-color: rgb(28, 28, 28) !important;
-    border: none !important;
+    border-color: #018786 !important;
 }
 
 .signup-modal-header {
@@ -22,4 +22,18 @@
 
 .signup-modal-body {
     background-color: rgb(28, 28, 28) !important;
+}
+
+.modal-content {
+    border-radius: 0 !important;
+}
+  
+.modal-header {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+  
+.modal-footer {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
