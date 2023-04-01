@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_restx import Api, Resource
 from flask_jwt_extended import create_access_token
+from datetime import timedelta
 
 from src.lib.db_connection import db_connection
 
@@ -55,6 +56,6 @@ class AuthenticateUser(Resource):
         if not db_connection.authenticate_user(username, password):
             return {'access_denied': 'invalid credentials'}, 401
         
-        access_token = str(create_access_token(identity=username))
+        access_token = str(create_access_token(identity=username, expires_delta=timedelta(minutes=30)))
         response_data = {'access_token': access_token}
         return response_data, 200

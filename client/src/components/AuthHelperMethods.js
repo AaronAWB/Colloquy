@@ -36,9 +36,9 @@ isTokenExpired = token => {
         if (decoded.exp < Date.now() / 1000) {
             return true;
         }
+        console.log(`Token expired: ${err}`)
         return false;
     } catch (err) {
-        console.log(`Token expired: ${err}`);
         return false;
         }
     };

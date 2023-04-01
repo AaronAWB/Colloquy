@@ -8,7 +8,7 @@ export default function withAuth(AuthComponent) {
 
 	function AuthWrapped() {
 
-		const [decoded_token, setDecoded_Token] = useState(null);
+		const [decodedToken, setDecodedToken] = useState(null);
 		const [loaded, setLoaded] = useState(false);
 
     	const navigate = useNavigate()
@@ -18,10 +18,12 @@ export default function withAuth(AuthComponent) {
           		navigate('/login');
       		} else {
           		try {
-					const decoded_data = auth.decode();
-					console.log("Token is:", decoded_data);
-					setDecoded_Token(decoded_data);
-					setLoaded(true);
+					const decodedData = auth.decode();
+					if (decodedData) {
+						setDecodedToken(decodedData);
+						console.log("Decoded token is:", decodedToken);
+						setLoaded(true);
+					};
         		} catch (err) {
 					auth.logout();
 					navigate('/login');
@@ -30,7 +32,7 @@ export default function withAuth(AuthComponent) {
     	}, []);
 
 		return (
-			<AuthComponent token={ decoded_token } loaded={ loaded } />
+			<AuthComponent token={ decodedToken } loaded={ loaded } />
 		)
 
 	}
