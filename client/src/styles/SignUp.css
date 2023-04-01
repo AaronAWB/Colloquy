@@ -4,13 +4,22 @@
 }
 
 .signup-modal-header, .signup-modal-footer {
-    background-color: black !important;
+    background-color: rgb(28, 28, 28) !important;
+    border: none !important;
+}
+
+.signup-modal-header {
+    text-align: center;
 }
 
 .modal-title {
     color:#03DAC6 !important;
 }
 
-.signup-modal-body, .signup-modal-form {
+.signup-text {
+    color: grey;
+}
+
+.signup-modal-body {
     background-color: rgb(28, 28, 28) !important;
 }

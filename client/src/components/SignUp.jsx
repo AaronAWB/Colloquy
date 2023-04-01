@@ -25,9 +25,13 @@ function SignUp({ hide, show }) {
     return (
         <Modal className='signup-modal' centered show={show} onHide={hide} backdrop='static'>
             <Modal.Header className='signup-modal-header'>
-                <Modal.Title className='modal-title'>Sign Up</Modal.Title>
+                <Modal.Title className='modal-title text-center'>Sign Up</Modal.Title>
             </Modal.Header>
             <Modal.Body className='signup-modal-body'>
+                <p className='signup-text'>
+                    Sign up to gain access to the chat. 
+                    Usernames cannot contain spaces or be longer than 12 charcters.
+                </p>
                 <Form className='signup-modal-form' onSubmit={handleSubmit}>
                     <Form.Group className='signup-modal-form mt-4'>
                         <Form.Control 
