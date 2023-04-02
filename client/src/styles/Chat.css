@@ -20,6 +20,15 @@ body {
     justify-content: center;
 }
 
+.channels-title-container {
+   background: black !important;
+   color:rgb(218, 215, 215);
+}
+
+.channels-title {
+    padding: 10px;
+}
+
 .channels-container {
     min-height: 700px;
     background: rgb(28, 28, 28) !important;

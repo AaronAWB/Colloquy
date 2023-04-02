@@ -42,6 +42,9 @@ function Chat () {
             </div>
             <Row>
             <Col md={3}>
+                <div className='mt-3 channels-title-container rounded shadow'>
+                    <h3 className='channels-title'>Channels</h3>
+                </div>
                 <div className='mt-3'>
                     <ChannelList channels={channels} />
                 </div>
