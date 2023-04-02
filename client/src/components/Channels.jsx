@@ -10,16 +10,17 @@ const ChannelList = ({ channels }) => {
     setSelectedChannel(channel);
     };
 
+
   return (
         <ListGroup className='channel-list shadow'>
         {channels.map((channel) => (
             <ListGroup.Item
                 className='channel-list-item'
-                key={channel.id}
+                key={channel.Id}
                 onClick={() => handleChannelClick(channel)}
-                active={selectedChannel && selectedChannel.id === channel.id}
+                active={selectedChannel && selectedChannel.Id === channel.Id}
             >
-            {channel.name}
+            # {channel.ChannelName}
             </ListGroup.Item>
         ))}
         </ListGroup>

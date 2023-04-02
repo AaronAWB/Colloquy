@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { AuthMethods, ChannelList } from '@Components/index';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
@@ -7,14 +8,23 @@ import '@Styles/Chat.css'
 
 function Chat () {
 
+    const [channels, setChannels] = useState([])
+
     const auth = new AuthMethods();
     const navigate = useNavigate();
     const decoded_token = auth.decode();
     const user = decoded_token.sub;
     const isGuest = user === 'Guest'
-
+    
     useEffect(() => {
         if (!auth.loggedIn()) {navigate('/login')};
+        axios.get('/api/channels')
+        .then(res => {
+            setChannels(res.data);
+        })
+        .catch (err => {
+            console.log(err)
+        })
     }, []);
 
     const handleLogout = e => {
@@ -22,12 +32,6 @@ function Chat () {
         auth.logout();
         navigate('/login')
         };
-
-    const channels = [
-        { id: 1, name: '# General' },
-        { id: 2, name: '# Random' },
-        { id: 3, name: '# Announcements' }
-    ];
 
     return (
         
