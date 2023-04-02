@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import io from 'socket.io-client';
 import { AuthMethods, ChannelList } from '@Components/index';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import '@Styles/Chat.css'

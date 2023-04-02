@@ -6,7 +6,14 @@ from flask_socketio import SocketIO
 
 from dotenv import load_dotenv; load_dotenv()
 
-from src.routes.database import CreateUser, GetAllUsers, GetUser, CreateMessage, GetAllMessages, CreateChannel, GetChannels, AuthenticateUser
+from src.routes.database import (CreateUser, 
+                                 GetAllUsers, 
+                                 GetUser, 
+                                 CreateMessage, 
+                                 GetAllMessages, 
+                                 CreateChannel, 
+                                 GetChannels, 
+                                 AuthenticateUser)
 
 app = Flask(__name__, static_url_path='/', static_folder='../../client/dist')
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
