@@ -1,5 +1,6 @@
 from flask_socketio import emit
 from src.lib.db_connection import db_connection
+from flask_socketio import SocketIO;
 
 socketio = SocketIO()
 
