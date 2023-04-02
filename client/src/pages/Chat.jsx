@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthMethods } from '@Components/index';
+import { AuthMethods, ChannelList } from '@Components/index';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import '@Styles/Chat.css'
 
@@ -23,6 +23,12 @@ function Chat () {
         navigate('/login')
         };
 
+    const channels = [
+        { id: 1, name: '# General' },
+        { id: 2, name: '# Random' },
+        { id: 3, name: '# Announcements' }
+    ];
+
     return (
         
         <Container>
@@ -36,13 +42,8 @@ function Chat () {
             </div>
             <Row>
             <Col md={3}>
-                <div className='channels-container rounded shadow p-3 mt-3 d-flex flex-column'>
-                    <div className='panel-header'>
-                        <h4>Channels</h4>
-                    </div>
-                    <div className='flex-grow-1'>
-            
-                    </div>
+                <div className='mt-3'>
+                    <ChannelList channels={channels} />
                 </div>
             </Col>
             <Col md={9}>
