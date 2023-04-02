@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
-// import io from 'socket.io-client';
+import io from 'socket.io-client';
 import { AuthMethods, ChannelList, ChatWindow } from '@Components/index';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '@Styles/Chat.css'
@@ -9,11 +9,12 @@ import '@Styles/Chat.css'
 
 function Chat () {
 
-    const [channels, setChannels] = useState([])
+    const [channels, setChannels] = useState([]);
+    const [currentChannel, setCurrentChannel] = useState(null);
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
-    // const socket = io();
+    const socket = io();
     const decoded_token = auth.decode();
     const user = decoded_token.sub;
     const isGuest = user === 'Guest'
@@ -35,6 +36,13 @@ function Chat () {
         navigate('/login')
         };
 
+    const handleSelectChannel = (channel) => {
+            setCurrentChannel(channel);
+            console.log(`Channel ${channel} selected.`)
+            console.log({currentChannel})
+        };
+
+
     return (
         
         <Container>
@@ -52,11 +60,11 @@ function Chat () {
                     <h3 className='channels-title'>Channels</h3>
                 </div>
                 <div className='mt-3'>
-                    <ChannelList channels={channels} />
+                    <ChannelList channels={channels} selectChannel={handleSelectChannel} />
                 </div>
             </Col>
             <Col md={9}>
-                <ChatWindow guest={isGuest} />
+                <ChatWindow guest={isGuest} channel={currentChannel} />
             </Col>
             </Row>
         </Container>

@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import '@Styles/Channels.css'
 
-const ChannelList = ({ channels }) => {
+const ChannelList = ({ channels, selectChannel }) => {
   
     const [selectedChannel, setSelectedChannel] = useState(null);
 
     const handleChannelClick = (channel) => {
-    setSelectedChannel(channel);
+        setSelectedChannel(channel);
+        selectChannel(channel);
+        console.log('Channel Clicked!')
     };
 
 
