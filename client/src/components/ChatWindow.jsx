@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
-import io from 'socket.io-client';
+import { socket } from '@Components/index';
 
 const ChatWindow = ({ guest, currentChannel }) => {
 
     const [message, setMessage] = useState("");
-
-    const socket = io();
 
     const handleSend = e => {
         e.preventDefault();

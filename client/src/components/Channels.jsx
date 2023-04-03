@@ -1,17 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ListGroup } from 'react-bootstrap';
+import axios from 'axios';
 import '@Styles/Channels.css'
 
-const ChannelList = ({ channels, selectChannel }) => {
+const ChannelList = ({ handleChannelChange }) => {
   
-    const [selectedChannel, setSelectedChannel] = useState(null);
+    const [channels, setChannels] = useState([]);
+    const [selectedChannel, setSelectedChannel] = useState(channels[0]);
+
+    useEffect(() => {
+        axios.get('/api/channels')
+        .then(res => {
+            setChannels(res.data);
+        })
+        .catch (err => {
+            console.log(err)
+        })
+    }, []);
 
     const handleChannelClick = (channel) => {
+        const channelName = channel.name;
         setSelectedChannel(channel);
-        selectChannel(channel);
-        console.log('Channel Clicked!')
+        handleChannelChange(channelName);
     };
 
+    console.log(selectedChannel)
 
   return (
         <ListGroup className='channel-list shadow'>
