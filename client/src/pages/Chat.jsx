@@ -29,6 +29,9 @@ function Chat () {
             setCurrentChannel(channel);
         };
 
+    useEffect(() => {
+        console.log(`The channel state in the Chat component is ${currentChannel}`)
+        }, [currentChannel])
 
     return (
         
@@ -51,7 +54,7 @@ function Chat () {
                 </div>
             </Col>
             <Col md={9}>
-                <ChatWindow guest={isGuest} channel={currentChannel} />
+                <ChatWindow guest={isGuest} currentChannel={currentChannel} />
             </Col>
             </Row>
         </Container>

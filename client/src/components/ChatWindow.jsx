@@ -8,11 +8,11 @@ const ChatWindow = ({ guest, currentChannel }) => {
 
     const handleSend = e => {
         e.preventDefault();
-        console.log({message}, {currentChannel})
+        console.log(currentChannel)
         if (message) {
-            socket.emit('add_message', { message: {message}, channel: {currentChannel} });
+            socket.emit('add_message', { message, channel: currentChannel });
+            setMessage("");
         };
-        setMessage("");
     }
 
     return(
