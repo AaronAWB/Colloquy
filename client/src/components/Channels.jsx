@@ -6,12 +6,13 @@ import '@Styles/Channels.css'
 const ChannelList = ({ handleChannelChange }) => {
   
     const [channels, setChannels] = useState([]);
-    const [selectedChannel, setSelectedChannel] = useState(channels[0]);
+    const [selectedChannel, setSelectedChannel] = useState(null);
 
     useEffect(() => {
         axios.get('/api/channels')
         .then(res => {
             setChannels(res.data);
+            setSelectedChannel(res.data[0]);
         })
         .catch (err => {
             console.log(err)
@@ -19,12 +20,15 @@ const ChannelList = ({ handleChannelChange }) => {
     }, []);
 
     const handleChannelClick = (channel) => {
-        const channelName = channel.name;
+        const channelName = channel.ChannelName;
         setSelectedChannel(channel);
-        handleChannelChange(channelName);
+        console.log(`Channel changed to ${channelName}`);
+        try {
+            handleChannelChange(channelName);
+        } catch (error) {
+            console.error(error);
+        }
     };
-
-    console.log(selectedChannel)
 
   return (
         <ListGroup className='channel-list shadow'>

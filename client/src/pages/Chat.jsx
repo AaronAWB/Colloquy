@@ -7,7 +7,7 @@ import '@Styles/Chat.css'
 
 function Chat () {
 
-    const [currentChannel, setCurrentChannel] = useState(null);
+    const [currentChannel, setCurrentChannel] = useState('General');
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
@@ -27,8 +27,6 @@ function Chat () {
 
     const handleChannelChange = (channel) => {
             setCurrentChannel(channel);
-            console.log(`Channel ${channel} selected.`)
-            console.log({currentChannel})
         };
 
 
@@ -49,7 +47,7 @@ function Chat () {
                     <h3 className='channels-title'>Channels</h3>
                 </div>
                 <div className='mt-3'>
-                    <ChannelList handleChangeChannel={handleChannelChange} />
+                    <ChannelList handleChannelChange={handleChannelChange} />
                 </div>
             </Col>
             <Col md={9}>
