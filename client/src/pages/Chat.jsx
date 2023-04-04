@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { AuthMethods, ChannelList, ChatWindow } from '@Components/index';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '@Styles/Chat.css'
@@ -8,15 +9,17 @@ import '@Styles/Chat.css'
 function Chat () {
 
     const [currentChannel, setCurrentChannel] = useState('General');
+    const [username, setUsername] = useState("");
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
     const decoded_token = auth.decode();
-    const user = decoded_token.sub;
-    const isGuest = user === 'Guest'
+    const userId = decoded_token.sub;
+    const isGuest = username === 'Guest'
     
     useEffect(() => {
         if (!auth.loggedIn()) {navigate('/login')};
+        getUsername()
     }, []);
 
     const handleLogout = e => {
@@ -28,6 +31,15 @@ function Chat () {
     const handleChannelChange = (channel) => {
             setCurrentChannel(channel);
         };
+    
+    const getUsername = async () => {
+        try {
+            const res = await axios.get(`/api/users/${userId}`)
+            setUsername(res.data.Username);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         console.log(`The channel state in the Chat component is ${currentChannel}`)
@@ -38,7 +50,7 @@ function Chat () {
         <Container>
             <div className='logout-button-container mt-3'>
                 <p className='user-id'>
-                    Logged in as: {user}
+                    Logged in as: {username}
                 </p>
                 <Button variant='danger' className ='logout-button' onClick={handleLogout}>
                     Logout
@@ -54,7 +66,11 @@ function Chat () {
                 </div>
             </Col>
             <Col md={9}>
-                <ChatWindow guest={isGuest} currentChannel={currentChannel} />
+                <ChatWindow 
+                    guest={isGuest} 
+                    currentChannel={currentChannel}
+                    user={username} 
+                    />
             </Col>
             </Row>
         </Container>

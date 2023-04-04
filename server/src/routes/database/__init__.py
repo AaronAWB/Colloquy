@@ -59,5 +59,5 @@ class AuthenticateUser(Resource):
             return {'access_denied': 'invalid credentials'}, 401
         
         access_token = create_access_token(identity=user_id, expires_delta=timedelta(minutes=30))
-        response_data = {'access_token': access_token, 'user_id': user_id}
+        response_data = {'access_token': access_token}
         return response_data, 200

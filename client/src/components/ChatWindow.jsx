@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { socket } from '@Components/index';
 
-const ChatWindow = ({ guest, currentChannel }) => {
+const ChatWindow = ({ guest, currentChannel, user }) => {
 
     const [message, setMessage] = useState("");
 
@@ -10,7 +10,7 @@ const ChatWindow = ({ guest, currentChannel }) => {
         e.preventDefault();
         console.log(currentChannel)
         if (message) {
-            socket.emit('add_message', { message, channel: currentChannel });
+            socket.emit('add_message', { message: message, channel: currentChannel, user: user });
             setMessage("");
         };
     }
