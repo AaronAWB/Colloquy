@@ -17,7 +17,6 @@ login = async (username, password) => {
       })
         const res_data = res.data
         this.setToken(res_data.access_token);
-        console.log(res_data.access_token)
         return true
     } catch (err) {
         console.log(`Authentication error: ${err}`);

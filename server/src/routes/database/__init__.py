@@ -53,9 +53,11 @@ class AuthenticateUser(Resource):
         username = request.json['username']
         password = request.json['password']
 
-        if not db_connection.authenticate_user(username, password):
+        is_valid_user, user_id = db_connection.authenticate_user(username, password)
+
+        if not is_valid_user:
             return {'access_denied': 'invalid credentials'}, 401
         
-        access_token = str(create_access_token(identity=username, expires_delta=timedelta(minutes=30)))
-        response_data = {'access_token': access_token}
+        access_token = create_access_token(identity=user_id, expires_delta=timedelta(minutes=30))
+        response_data = {'access_token': access_token, 'user_id': user_id}
         return response_data, 200

@@ -31,6 +31,7 @@ const ChannelList = ({ handleChannelChange }) => {
     };
 
   return (
+        
         <ListGroup className='channel-list shadow'>
         {channels.map((channel) => (
             <ListGroup.Item

@@ -65,13 +65,15 @@ class DB_Connection:
 
             row = cur.fetchone()
 
+            if row is None:
+                return False, None
+        
+            return True, row[0]
+
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            row = None
+            return False, None
 
-        print(row)
-        return False if row is None else True
-    
     
     def add_message(self, data, channel):
 
