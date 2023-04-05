@@ -1,9 +1,7 @@
-import AuthHelperMethods from './AuthHelperMethods';
-import withAuth from './withAuth';
 import SignUp from './SignUp';
 import ChannelList from './Channels';
 import ChatWindow from './ChatWindow';
-import socket from './socket';
+import withAuth from './withAuth';
 
-export { AuthHelperMethods as AuthMethods, withAuth, SignUp, ChannelList, ChatWindow, socket } 
+export { withAuth, SignUp, ChannelList, ChatWindow } 
 

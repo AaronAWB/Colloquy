@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthMethods } from '@Components/index';
+import { AuthMethods } from '@Utils/index';
 
 export default function withAuth(AuthComponent) {
 

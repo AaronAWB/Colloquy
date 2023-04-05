@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
-import { socket } from '@Components/index';
+import { socket } from '@Utils/index';
 
 const ChatWindow = ({ guest, currentChannel, user }) => {
 

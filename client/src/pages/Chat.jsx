@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AuthMethods, ChannelList, ChatWindow } from '@Components/index';
+import { ChannelList, ChatWindow } from '@Components/index';
+import { AuthMethods } from '@Utils/index';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '@Styles/Chat.css'
 

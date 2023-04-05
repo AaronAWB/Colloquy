@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
-import { AuthMethods, SignUp } from '@Components/index';
+import { SignUp } from '@Components/index';
+import { AuthMethods } from '@Utils/index';
 import '@Styles/Login.css'
 
 function Login () {
