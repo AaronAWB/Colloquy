@@ -16,19 +16,19 @@ def handle_add_message(data):
     userId = data['userId']
     message = db_connection.add_message(messageContent, channel, userId)
     print(message)
-    socketio.emit('message_added', message, broadcast=True)
+    emit('message_added', message, broadcast=True)
 
 @socketio.on('update_messages')
 def handle_update_message(data):
     messages = db_connection.get_table(data['channel'])
-    socketio.emit('message_list', messages, broadcast=True)
+    emit('message_list', messages, broadcast=True)
 
 @socketio.on('update_channel_list')
 def handle_update_channels():
     channels = db_connection.get_table('channels')
-    socketio.emit('channel_list', channels, broadcast=True)
+    emit('channel_list', channels, broadcast=True)
 
 @socketio.on('add_channel')
 def handle_add_channel(data):
     new_channel = db_connection.add_channel(data)
-    socketio.emit ('channel_added', new_channel, broadcast=True)
+    emit ('channel_added', new_channel, broadcast=True)

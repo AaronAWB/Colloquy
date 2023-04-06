@@ -4,7 +4,7 @@ const socket = io({
     autoConnect: false
 });
 
-socket.on("connect", () => {
+socket.on('connect', () => {
     console.log(socket.connected);
   });
 
