@@ -70,7 +70,8 @@ function Chat () {
                 <ChatWindow 
                     guest={isGuest} 
                     currentChannel={currentChannel}
-                    user={username} 
+                    username={username}
+                    userId={userId} 
                     />
             </Col>
             </Row>

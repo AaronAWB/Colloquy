@@ -75,7 +75,7 @@ class DB_Connection:
             return False, None
 
     
-    def add_message(self, data, channel):
+    def add_message(self, messageContent, channel, userId):
 
         try:
             
@@ -83,7 +83,7 @@ class DB_Connection:
             cur = conn.cursor()
             
             query = f'INSERT INTO {channel} ("UserId", "Message") VALUES (%s, %s)'
-            cur.execute(query, (data["UserId"], data["Message"]))
+            cur.execute(query, (userId, messageContent))
 
             conn.commit()
             cur.close()

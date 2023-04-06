@@ -1,30 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { socket } from '@Utils/index';
+import { Message } from '@Components/index';
 
-const ChatWindow = ({ guest, currentChannel, user }) => {
+const ChatWindow = ({ guest, currentChannel, username, userId }) => {
 
-    const [message, setMessage] = useState("");
+    const [newMessage, setNewMessage] = useState("");
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        socket.on('add_message', (data) => {
+            setMessages((messages) => [...messages, data]);
+        });
+    }, []);
 
     const handleSend = e => {
         e.preventDefault();
-        console.log(currentChannel)
-        if (message) {
-            socket.emit('add_message', { message: message, channel: currentChannel, user: user });
-            setMessage("");
+        if (newMessage) {
+            socket.emit('add_message', { message: newMessage, channel: currentChannel, userId: userId });
+            setNewMessage("");
         };
+    }
+
+    const renderMessages = () => {
+        return messages.map((message) => (
+            <Message 
+                key={message.Id}
+                username={username}
+                message={message.Message}
+                timestamp={message.CreatedAt}
+            />
+        ));
     }
 
     return(
         <div className='chat-container rounded shadow p-3 mb-3 mt-3'>
+            <div className='messages-container'>
+                {renderMessages()}
+            </div>
             <div className='message-bar-container'>
                 <InputGroup>
                     <Form.Control 
                         className='message-bar' 
                         type='text' 
                         id='messageInput' 
-                        value={message}
-                        onChange={e => setMessage(e.target.value)}
+                        value={newMessage}
+                        onChange={e => setNewMessage(e.target.value)}
                         />
                     <Button 
                         type='submit' 

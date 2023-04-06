@@ -43,7 +43,6 @@ def create_app():
     api.add_resource(GetChannels, '/channels')
     api.add_resource(AuthenticateUser, '/authenticate')
     
-
     app.register_blueprint(api_bp)   
 
     return app
