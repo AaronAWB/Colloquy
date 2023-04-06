@@ -2,7 +2,6 @@ import os
 from flask import Flask, Blueprint
 from flask_restx import Api
 from flask_jwt_extended import JWTManager
-from flask_socketio import SocketIO
 
 from dotenv import load_dotenv; load_dotenv()
 
@@ -19,7 +18,6 @@ app = Flask(__name__, static_url_path='/', static_folder='../../client/dist')
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 app.config['JWT_ALGORITHM'] = 'HS256'
 jwt = JWTManager(app)
-socketio = SocketIO(app)
 
 def create_app():
 
