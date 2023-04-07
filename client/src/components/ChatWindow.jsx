@@ -9,18 +9,19 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        socket.on('add_message', (data) => {
+        socket.on('message_added', (data) => {
             setMessages((messages) => [...messages, data]);
         });
     }, []);
 
-    const handleSend = e => {
+    const handleSendMessage = e => {
         e.preventDefault();
         if (newMessage) {
-            socket.emit('add_message', { message: newMessage, channel: currentChannel, userId: userId });
+            let messageData = { message: newMessage, channel: currentChannel, userId: userId }
+            socket.emit('add_message', messageData);
             setNewMessage("");
         };
-    }
+    };
 
     const renderMessages = () => {
         return messages.map((message) => (
@@ -51,7 +52,7 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
                         type='submit' 
                         variant='primary' 
                         disabled={guest} 
-                        onClick={handleSend}
+                        onClick={handleSendMessage}
                         >Send</Button>
                 </InputGroup>
             </div>

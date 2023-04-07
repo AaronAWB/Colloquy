@@ -19,14 +19,14 @@ def handle_add_message(data):
     emit('message_added', message, broadcast=True)
 
 @socketio.on('update_messages')
-def handle_update_message(data):
+def handle_update_messages(data):
     messages = db_connection.get_table(data['channel'])
-    emit('message_list', messages, broadcast=True)
+    emit('updated_message_list', messages, broadcast=True)
 
 @socketio.on('update_channel_list')
 def handle_update_channels():
     channels = db_connection.get_table('channels')
-    emit('channel_list', channels, broadcast=True)
+    emit('updated_channel_list', channels, broadcast=True)
 
 @socketio.on('add_channel')
 def handle_add_channel(data):

@@ -77,6 +77,8 @@ class DB_Connection:
     
     def add_message(self, messageContent, channel, userId):
 
+        print('Add message db function triggered.')
+
         try:
             
             conn = psycopg2.connect(self.params)
