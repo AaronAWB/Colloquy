@@ -4,6 +4,10 @@ from src.lib.db_connection import db_connection
 
 socketio = SocketIO()
 
+@socketio.on('test')
+def test():    
+    print("TEST EVENT FIRED!Connected")
+
 @socketio.on('connect')
 def handle_connection():
     print("User Connected: ", request.sid)

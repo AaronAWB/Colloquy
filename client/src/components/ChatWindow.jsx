@@ -12,12 +12,20 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
         socket.on('message_added', (data) => {
             setMessages((messages) => [...messages, data]);
         });
+
+        socket.on('add_message', (data) => {
+            console.log('add_message event emitted with data:', data);
+          });        
     }, []);
 
     const handleSendMessage = e => {
         e.preventDefault();
         if (newMessage) {
-            let messageData = { message: newMessage, channel: currentChannel, userId: userId }
+            let messageData = { 
+                message: newMessage, 
+                channel: currentChannel, 
+                userId: userId }
+        console.log(messageData)
             socket.emit('add_message', messageData);
             setNewMessage("");
         };
