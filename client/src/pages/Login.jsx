@@ -35,7 +35,10 @@ function Login () {
         e.preventDefault();
         try {
             const guestLogin = await auth.login("Guest", "GuestPwd");
-            if (guestLogin === true) {navigate('/')}
+            if (guestLogin === true) {
+                socketConnect();
+                navigate('/')
+            }
         } catch (err) {
             console.log(`Guest login failed ${err}`)
             }
