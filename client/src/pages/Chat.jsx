@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ChannelList, ChatWindow } from '@Components/index';
-import { AuthMethods, socketDisconnect } from '@Utils/index';
+import { AuthMethods, socketConnect, socketDisconnect } from '@Utils/index';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '@Styles/Chat.css';
 
@@ -22,6 +22,7 @@ function Chat () {
     useEffect(() => {
         if (!auth.loggedIn()) {navigate("/login")}
         setDecodedToken(auth.decode());
+        socketConnect();
       }, []);
 
     useEffect(() => {
