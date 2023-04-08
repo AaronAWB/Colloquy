@@ -11,18 +11,30 @@ import '@Styles/Chat.css';
 function Chat () {
 
     const [currentChannel, setCurrentChannel] = useState('General');
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState('Guest');
+    const [decodedToken, setDecodedToken] = useState("");
+    const [userId, setUserId] = useState("");
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
-    const decoded_token = auth.decode();
-    const userId = decoded_token.sub;
     const isGuest = username === 'Guest'
     
     useEffect(() => {
-        if (!auth.loggedIn()) {navigate('/login')};
-        getUsername()
-    }, []);
+        if (!auth.loggedIn()) {navigate("/login")}
+        setDecodedToken(auth.decode());
+      }, []);
+
+    useEffect(() => {
+    if (decodedToken) {
+        setUserId(decodedToken.sub);
+    }
+    }, [decodedToken]);
+
+    useEffect(() => {
+        if (userId) {
+            getUsername();
+        }
+    }, [userId]);
 
     const handleLogout = e => {
         e.preventDefault();
@@ -39,8 +51,8 @@ function Chat () {
         try {
             const res = await axios.get(`/api/users/${userId}`)
             setUsername(res.data.Username);
-        } catch (error) {
-            console.log(error)
+        } catch (err) {
+            console.log(err)
         }
     }
 

@@ -27,17 +27,18 @@ login = async (username, password) => {
 loggedIn = () => {
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
-    }
+    };
 
 isTokenExpired = token => {
     try {
         const decoded = decode(token);
         if (decoded.exp < Date.now() / 1000) {
+            console.log('Token expired.')
             return true;
         }
-        console.log(`Token expired: ${err}`)
         return false;
     } catch (err) {
+        console.log(err)
         return false;
         }
     };
@@ -57,10 +58,15 @@ logout = () => {
     };
 
 decode = () => {
-    let decoded_token = decode(this.getToken());
+    try {
+        const token = this.getToken();
+        if (!token) {return null}
+        const decoded_token = decode(token);
         return decoded_token;
+    } catch (err) {
+        console.log(`Decoding error: ${err}`);
+        return null;
+        }
     };
-    
+
 }
-
-

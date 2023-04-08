@@ -4,12 +4,20 @@ const socket = io({
     autoConnect: false
 });
 
+const socketConnect = () => {
+    socket.connect();
+};
+
+const socketDisconnect = () => {
+    socket.disconnect();
+};
+
 socket.on('connect', () => {
-    console.log(socket.connected);
+    console.log(`Socketio connected: ${socket.connected}`);
 });
 
 socket.on('connect', () => {
-    console.log(socket.id);
+    console.log(`Socket id: ${socket.id}`);
 });
 
 socket.on('connect_error', (err) => {
@@ -17,16 +25,8 @@ socket.on('connect_error', (err) => {
 });
 
 socket.on('disconnect', () => {
-    console.log(socket.connected);
+    console.log(`Socketio connected: ${socket.connected}`);
 });
-
-const socketConnect = () => {
-    socket.connect();
-}
-
-const socketDisconnect = () => {
-    socket.disconnect();
-}
 
 
 export { socket, socketConnect, socketDisconnect };

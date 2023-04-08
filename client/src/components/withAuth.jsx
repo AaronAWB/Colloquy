@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthMethods } from '@Utils/index';
 
 export default function withAuth(AuthComponent) {
@@ -8,22 +8,19 @@ export default function withAuth(AuthComponent) {
 
 	function AuthWrapped() {
 
-		const [loaded, setLoaded] = useState(false);
-
     	const navigate = useNavigate();
+		const location = useLocation();
 		
 			useEffect(() => {
-
-				if (!auth.loggedIn()) {
+				if (location.pathname !== '/login' && !auth.loggedIn()) {
 					navigate('/login');
 				} else {
-					setLoaded(true);
 					navigate('/')
 				}
 			}, []);
 
 		return (
-			<AuthComponent loaded={ loaded } />
+			<AuthComponent />
 		)
 		
 	}

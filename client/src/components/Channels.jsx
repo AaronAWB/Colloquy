@@ -25,8 +25,8 @@ const ChannelList = ({ handleChannelChange }) => {
         console.log(`Channel changed to ${channelName}`);
         try {
             handleChannelChange(channelName);
-        } catch (error) {
-            console.error(error);
+        } catch (err) {
+            console.error(err);
         }
     };
 
