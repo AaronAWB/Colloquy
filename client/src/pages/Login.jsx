@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import { SignUp } from '@Components/index';
-import { AuthMethods } from '@Utils/index';
+import { AuthMethods, socketConnect } from '@Utils/index';
 import '@Styles/Login.css'
 
 function Login () {
@@ -22,7 +22,10 @@ function Login () {
         e.preventDefault();
         try {
             const login = await auth.login(username, password);
-            if (login === true) {navigate('/')}
+            if (login === true) {
+                socketConnect();
+                navigate('/')
+            }
         } catch (err) {
             console.log(`Login failed: ${err}`)
             }

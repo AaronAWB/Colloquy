@@ -8,7 +8,6 @@ export default function withAuth(AuthComponent) {
 
 	function AuthWrapped() {
 
-		const [decodedToken, setDecodedToken] = useState(null);
 		const [loaded, setLoaded] = useState(false);
 
     	const navigate = useNavigate();
@@ -20,17 +19,6 @@ export default function withAuth(AuthComponent) {
 				} else {
 					setLoaded(true);
 					navigate('/')
-					// try {
-					// 	const decodedData = auth.decode();
-					// 	if (decodedData) {
-					// 		setDecodedToken(decodedData);
-					// 		setLoaded(true);
-					// 		navigate('/')
-					// 	};
-					// } catch (err) {
-					// 	auth.logout();
-					// 	navigate('/login');
-					// }
 				}
 			}, []);
 
