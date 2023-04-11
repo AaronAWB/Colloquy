@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { socket } from '@Utils/index';
 import { Message } from '@Components/index';
+import '@Styles/ChatWindow.css';
 
 const ChatWindow = ({ guest, currentChannel, username, userId }) => {
 
@@ -12,6 +13,10 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
     useEffect(() => {
         getChannelMessages();
     }, [currentChannel]);
+
+    useEffect(() => {
+        console.log(displayedMessages);
+      }, [displayedMessages]);
 
     socket.on('message_added', (data) => {
         setDisplayedMessages([...displayedMessages, data]);

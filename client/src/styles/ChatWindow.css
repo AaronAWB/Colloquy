@@ -1,0 +1,21 @@
+.chat-container {
+    min-height: 700px;
+    background: rgb(28, 28, 28) !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-container {
+    height: 605px;
+    overflow-y: auto;
+}
+
+.message-bar-container {
+    margin-top: auto;
+}
+
+.message-bar {
+    background: black !important;
+    color: rgb(218, 215, 215) !important;
+    border: none !important;
+}
