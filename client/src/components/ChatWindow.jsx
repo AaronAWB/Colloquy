@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { socket } from '@Utils/index';
 import { Message } from '@Components/index';
@@ -6,17 +7,25 @@ import { Message } from '@Components/index';
 const ChatWindow = ({ guest, currentChannel, username, userId }) => {
 
     const [newMessage, setNewMessage] = useState("");
-    const [messages, setMessages] = useState([]);
+    const [displayedMessages, setDisplayedMessages] = useState([]);
 
     useEffect(() => {
-        socket.on('message_added', (data) => {
-            setMessages((messages) => [...messages, data]);
-        });
+        getChannelMessages();
+    }, [currentChannel]);
 
-        socket.on('add_message', (data) => {
-            console.log('add_message event emitted with data:', data);
-          });        
-    }, []);
+    socket.on('message_added', (data) => {
+        setDisplayedMessages([...displayedMessages, data]);
+        console.log(`Returned new message: ${JSON.stringify(data)}`)
+    })
+
+    const getChannelMessages = async () => {
+        try {
+            const res = await axios.get(`/api/messages/${currentChannel}`)
+            setDisplayedMessages(res.data);
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const handleSendMessage = e => {
         e.preventDefault();
@@ -24,15 +33,17 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
             let messageData = { 
                 message: newMessage, 
                 channel: currentChannel, 
-                userId: userId }
+                userId: userId 
+            }
         console.log(messageData)
             socket.emit('add_message', messageData);
             setNewMessage("");
         };
     };
 
+    
     const renderMessages = () => {
-        return messages.map((message) => (
+        return displayedMessages.map((message) => (
             <Message 
                 key={message.Id}
                 username={username}

@@ -1,18 +1,4 @@
-from flask import request
-from main import socketio
 from src.lib.db_connection import db_connection
-
-@socketio.on('connect')
-def handle_connection():
-    print("----- USER CONNECTED ---------: ", request.sid)
-
-@socketio.on('test')
-def test(data):    
-    print(data)
-
-@socketio.on('connect')
-def handle_connection():
-    print("User Connected: ", request.sid)
 
 @socketio.on('add_message')
 def handle_add_message(data):

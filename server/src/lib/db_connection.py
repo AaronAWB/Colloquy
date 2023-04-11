@@ -94,7 +94,9 @@ class DB_Connection:
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
 
-        return "Message added."
+        return {"userId": userId, 
+                "message": messageContent, 
+                "channel": channel}
     
     def add_user(self, username, password):
 

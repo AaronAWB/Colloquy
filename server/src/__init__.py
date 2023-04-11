@@ -36,7 +36,7 @@ def create_app():
     api.add_resource(GetAllUsers, '/users')
     api.add_resource(GetUser, '/users/<user_id>')
     api.add_resource(CreateMessage, '/messages/<channel>')
-    api.add_resource(GetAllMessages, '/messages')
+    api.add_resource(GetAllMessages, '/messages/<channel>')
     api.add_resource(CreateChannel, '/channels')
     api.add_resource(GetChannels, '/channels')
     api.add_resource(AuthenticateUser, '/authenticate')

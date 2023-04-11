@@ -13,11 +13,6 @@ const socketDisconnect = () => {
 };
 
 socket.on('connect', () => {
-    console.log(socket.connected);
-    socket.emit('test', 'hello world!');
-});
-
-socket.on('connect', () => {
     console.log(`Socketio connected: ${socket.connected}`);
 });
 
