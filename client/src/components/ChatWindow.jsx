@@ -16,16 +16,18 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
 
     useEffect(() => {
         console.log(displayedMessages);
-      }, [displayedMessages]);
+    }, [displayedMessages]);
 
-    socket.on('message_added', (data) => {
-        setDisplayedMessages([...displayedMessages, data]);
-        console.log(`Returned new message: ${JSON.stringify(data)}`)
-    })
+    useEffect(() => {
+        socket.on('message_added', (data) => {
+            setDisplayedMessages(prevMessages => [...prevMessages, data]);
+            console.log(`Returned new message: ${JSON.stringify(data)}`)
+        })
+    }, []);
 
     const getChannelMessages = async () => {
         try {
-            const res = await axios.get(`/api/messages/${currentChannel}`)
+            const res = await axios.get(`/api/messages/${currentChannel}`);
             setDisplayedMessages(res.data);
         } catch (err) {
             console.log(err)
