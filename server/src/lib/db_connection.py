@@ -8,7 +8,7 @@ class DB_Connection:
     def __init__(self):
         self.params = os.getenv("DB_CONNECTION_INFO_STRING")
         
-    def get_table(self, table):
+    def get_channel(self, channel):
 
         try:
             
@@ -17,13 +17,37 @@ class DB_Connection:
             
             query = f'''
             SELECT t.*, u."Username"
-            FROM {table} t
+            FROM {channel} t
             LEFT JOIN users u ON t."UserId" = u."Id"
             ORDER BY t."CreatedAt" ASC'''
             
             cur.execute(query)
             rows = cur.fetchall()
             print(rows)
+            
+            cur.close()
+            conn.close()
+
+            for row in rows:
+                row['CreatedAt'] = row['CreatedAt'].isoformat()
+        
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            rows = {}
+        
+        return rows
+    
+    def get_channel_list(self):
+
+        try:
+            
+            conn = psycopg2.connect(self.params)
+            cur = conn.cursor(cursor_factory = RealDictCursor)
+            
+            query = f'SELECT * FROM channels'
+            
+            cur.execute(query)
+            rows = cur.fetchall()
             
             cur.close()
             conn.close()

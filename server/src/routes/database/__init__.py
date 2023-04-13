@@ -34,7 +34,7 @@ class CreateMessage(Resource):
 @api.route('/messages/<channel>')
 class GetAllMessages(Resource):
     def get(self, channel):
-        return db_connection.get_table(channel), 200
+        return db_connection.get_channel(channel), 200
     
 @api.route('/channels')
 class CreateChannel(Resource):
@@ -45,7 +45,7 @@ class CreateChannel(Resource):
 @api.route('/channels')
 class GetChannels(Resource):
     def get(self):
-        return db_connection.get_table('channels'), 200
+        return db_connection.get_channel_list(), 200
     
 @api.route('/authenticate')
 class AuthenticateUser(Resource):
