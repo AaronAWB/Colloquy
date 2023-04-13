@@ -75,7 +75,7 @@ class DB_Connection:
             return False, None
 
     
-    def add_message(self, messageContent, channel, userId):
+    def add_message(self, message, channel, userId):
 
         print('Add message db function triggered.')
 
@@ -90,13 +90,10 @@ class DB_Connection:
             RETURNING "Id", "CreatedAt",
             (SELECT "Username" FROM users WHERE "Id" = %s)
             '''
-            cur.execute(query, (userId, messageContent, userId))
+            cur.execute(query, (userId, message, userId))
 
             result = cur.fetchone()
             Id, CreatedAt, Username = result
-            print(Id)
-            print(CreatedAt)
-            print(Username)
             CreatedAt = CreatedAt.isoformat()
             
             conn.commit()
@@ -109,7 +106,7 @@ class DB_Connection:
         return {"Id": Id,
                 "UserId": userId, 
                 "Username": Username,
-                "Message": messageContent, 
+                "Message": message, 
                 "Channel": channel,
                 "CreatedAt": CreatedAt
                 }

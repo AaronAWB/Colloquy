@@ -12,10 +12,10 @@ def handle_connection():
 
 @socketio.on('add_message')
 def handle_add_message(data):
-    messageContent = data['message']
+    message = data['message']
     channel = data['channel']
     userId = data['userId']
-    message = db_connection.add_message(messageContent, channel, userId)
+    message = db_connection.add_message(message, channel, userId)
     socketio.emit('message_added', message)
 
 @socketio.on('update_messages')
