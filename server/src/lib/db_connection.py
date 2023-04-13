@@ -15,9 +15,15 @@ class DB_Connection:
             conn = psycopg2.connect(self.params)
             cur = conn.cursor(cursor_factory = RealDictCursor)
             
-            query = f'SELECT * FROM {table}'
+            query = f'''
+            SELECT t.*, u."Username"
+            FROM {table} t
+            LEFT JOIN users u ON t."UserId" = u."Id"
+            ORDER BY t."CreatedAt" ASC'''
+            
             cur.execute(query)
             rows = cur.fetchall()
+            print(rows)
             
             cur.close()
             conn.close()

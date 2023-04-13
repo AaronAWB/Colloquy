@@ -8,7 +8,7 @@ socketio = SocketIO(app, cors_allowed_origins='*', logger=True)
 
 @socketio.on('connect')
 def handle_connection():
-    print("----- USER CONNECTED ---------: ", request.sid)
+    print("--------- USER CONNECTED ---------: ", request.sid)
 
 @socketio.on('add_message')
 def handle_add_message(data):
@@ -24,7 +24,7 @@ def handle_update_messages(data):
     socketio.emit('updated_message_list', messages)
 
 @socketio.on('update_channel_list')
-def handle_update_channels(data):
+def handle_update_channels():
     channels = db_connection.get_table('channels')
     socketio.emit('updated_channel_list', channels)
 

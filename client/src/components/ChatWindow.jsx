@@ -5,7 +5,7 @@ import { socket } from '@Utils/index';
 import { Message } from '@Components/index';
 import '@Styles/ChatWindow.css';
 
-const ChatWindow = ({ guest, currentChannel, username, userId }) => {
+const ChatWindow = ({ guest, currentChannel, userId }) => {
 
     const [newMessage, setNewMessage] = useState("");
     const [displayedMessages, setDisplayedMessages] = useState([]);
@@ -29,6 +29,7 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
     const getChannelMessages = async () => {
         try {
             const res = await axios.get(`/api/messages/${currentChannel}`);
+            console.log(res.data)
             setDisplayedMessages(res.data);
         } catch (err) {
             console.log(err)
