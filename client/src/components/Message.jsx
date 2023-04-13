@@ -1,10 +1,10 @@
-const Message = ({ username, message, timestamp }) => {
+const Message = ({ username, message, time }) => {
 
     return(
         <div className='message-container'>
             <span>{username}:</span>
             <span>{message}</span>
-            <span> - [{timestamp }]</span>
+            <span> - [{time}]</span>
         </div>
     );
 }

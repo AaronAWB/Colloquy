@@ -20,6 +20,7 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
 
     useEffect(() => {
         socket.on('message_added', (data) => {
+            console.log(data)
             setDisplayedMessages(prevMessages => [...prevMessages, data]);
             console.log(`Returned new message: ${JSON.stringify(data)}`)
         })
@@ -53,9 +54,9 @@ const ChatWindow = ({ guest, currentChannel, username, userId }) => {
         return displayedMessages.map((message) => (
             <Message 
                 key={message.Id}
-                username={username}
+                username={message.Username}
                 message={message.Message}
-                timestamp={message.CreatedAt}
+                time={message.CreatedAt}
             />
         ));
     }

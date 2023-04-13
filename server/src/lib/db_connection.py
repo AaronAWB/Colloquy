@@ -84,11 +84,21 @@ class DB_Connection:
             conn = psycopg2.connect(self.params)
             cur = conn.cursor()
             
-            query = f'INSERT INTO {channel} ("UserId", "Message") VALUES (%s, %s) RETURNING Id'
-            cur.execute(query, (userId, messageContent))
+            query = f'''
+            INSERT INTO {channel} ("UserId", "Message") 
+            VALUES (%s, %s) 
+            RETURNING "Id", "CreatedAt",
+            (SELECT "Username" FROM users WHERE "Id" = %s)
+            '''
+            cur.execute(query, (userId, messageContent, userId))
 
-
-            row_id = cur.fetchone()[0]
+            result = cur.fetchone()
+            Id, CreatedAt, Username = result
+            print(Id)
+            print(CreatedAt)
+            print(Username)
+            CreatedAt = CreatedAt.isoformat()
+            
             conn.commit()
             cur.close()
             conn.close()
@@ -96,10 +106,13 @@ class DB_Connection:
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
 
-        return {"Id": row_id,
-                "userId": userId, 
-                "message": messageContent, 
-                "channel": channel}
+        return {"Id": Id,
+                "UserId": userId, 
+                "Username": Username,
+                "Message": messageContent, 
+                "Channel": channel,
+                "CreatedAt": CreatedAt
+                }
     
     def add_user(self, username, password):
 
