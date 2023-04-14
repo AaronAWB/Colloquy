@@ -1,3 +1,5 @@
+import '@Styles/Message.css'
+
 const Message = ({ username, message, time }) => {
 
     return(

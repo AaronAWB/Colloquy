@@ -5,7 +5,7 @@
 
 .signup-modal-header, .signup-modal-footer {
     background-color: rgb(28, 28, 28) !important;
-    border-color: #018786 !important;
+    border-color: darkgray !important;
 }
 
 .signup-modal-header {
@@ -22,6 +22,12 @@
 
 .signup-modal-body {
     background-color: rgb(28, 28, 28) !important;
+}
+
+.username-input, .password-input {
+    background-color: black !important;
+    color: rgb(218, 215, 215) !important;
+    border: none !important;
 }
 
 .modal-content {

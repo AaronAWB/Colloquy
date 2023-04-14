@@ -35,7 +35,7 @@ function SignUp({ hide, show }) {
                 <Form className='signup-modal-form' onSubmit={handleSubmit}>
                     <Form.Group className='signup-modal-form mt-4'>
                         <Form.Control 
-                            className='signup-modal-form'
+                            className='signup-modal-form username-input shadow'
                             type='text' 
                             placeholder="Enter new username"
                             value={username}
@@ -45,7 +45,7 @@ function SignUp({ hide, show }) {
 
                     <Form.Group className='signup-modal-form mt-4 mb-4'>
                         <Form.Control 
-                            className='signup-modal-form'
+                            className='signup-modal-form password-input shadow'
                             type='password' 
                             placeholder="Enter new password" 
                             value={password}
