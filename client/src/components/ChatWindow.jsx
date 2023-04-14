@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { socket } from '@Utils/index';
-import { Message } from '@Components/index';
+import { MessagesContainer, Message } from '@Components/index';
 import '@Styles/ChatWindow.css';
+
 
 const ChatWindow = ({ guest, currentChannel, userId }) => {
 
@@ -64,9 +65,7 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
 
     return(
         <div className='chat-container rounded shadow p-3 mb-3 mt-3'>
-            <div className='messages-container'>
-                {renderMessages()}
-            </div>
+            <MessagesContainer content={renderMessages()} />
             <div className='message-bar-container'>
                 <InputGroup>
                     <Form.Control 
