@@ -56,24 +56,24 @@ function Login () {
             <Form className='mt-3' onSubmit={handleLogin}>
                 <Form.Group controlId='formBasicUsername' className='mt-3'>
                     <Form.Control 
+                        className='text-center username-input shadow' 
                         type='text' 
                         placeholder="Username" 
                         value={username}
                         onChange={e => setUsername(e.target.value)}
-                        className='text-center' 
                         />
                 </Form.Group>
                 <Form.Group controlId='formBasicPassword' className='mt-3'>
                     <Form.Control 
+                        className='text-center password-input shadow'
                         type='password' 
                         placeholder="Password" 
                         value={password} 
                         onChange={e => setPassword(e.target.value)} 
-                        className='text-center'
                         />     
                 </Form.Group>
                 <div className ='button-container'>
-                    <Button className='mt-3 login-button' variant='secondary' type='submit'>Sign In</Button>
+                    <Button className='mt-3 login-button shadow' variant='secondary' type='submit'>Sign In</Button>
                 </div>
             </Form>
             <div className='signup-prompt'>

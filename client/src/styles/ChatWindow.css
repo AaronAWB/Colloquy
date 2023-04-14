@@ -14,3 +14,13 @@
     color: rgb(218, 215, 215) !important;
     border: none !important;
 }
+
+.send-button {
+    background: #018786 !important;
+    color: rgb(218, 215, 215) !important;
+    border: none !important;
+}
+
+.send-button:hover {
+    background-color: #01736c !important;
+  }

@@ -69,15 +69,15 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
             <div className='message-bar-container'>
                 <InputGroup>
                     <Form.Control 
-                        className='message-bar' 
+                        className='message-bar shadow' 
                         type='text' 
                         id='messageInput' 
                         value={newMessage}
                         onChange={e => setNewMessage(e.target.value)}
                         />
                     <Button 
+                        className='send-button shadow'
                         type='submit' 
-                        variant='primary' 
                         disabled={guest} 
                         onClick={handleSendMessage}
                         >Send</Button>
