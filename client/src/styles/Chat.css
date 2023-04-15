@@ -8,16 +8,20 @@ body {
     align-items: center;
 }
 
+.logout-button {
+    background-color: #cf6679 !important;
+    border: none !important;
+}
+
+.logout-button:hover {
+    background-color: #b84c5e !important;
+    border: none !important;
+}
+
 .user-id {
     padding-top: 10px;
     padding-right: 30px;
     color: rgb(218, 215, 215);
-}
-
-.panel-header {
-    color: rgb(218, 215, 215);
-    display: flex;
-    justify-content: center;
 }
 
 .channels-title-container {
@@ -30,18 +34,36 @@ body {
 }
 
 .channel-list-container {
-    max-height: 563px;
+    max-height: 570px;
     overflow-y: auto;
 }
 
+.channel-list-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+  
+.channel-list-container::-webkit-scrollbar-track {
+background-color: transparent;
+}
+
+.channel-list-container::-webkit-scrollbar-thumb {
+background-color: rgba(0, 0, 0, 0.2);
+border-radius: 3px;
+}
+
+.channel-list-container::-webkit-scrollbar-thumb:hover {
+background-color: rgba(0, 0, 0, 0.4);
+}
+
 .new-channel-button {
-    background: #3700b3 !important;
+    background: #018786 !important;
     color:  rgb(218, 215, 215) !important;
     border: none !important;
 }
 
 .new-channel-button:hover {
-    background-color: #30009c !important;
+    background-color: #01736c !important;
     border: none !important;
 }
 

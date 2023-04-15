@@ -71,7 +71,7 @@ function Chat () {
                 <p className='user-id'>
                     Logged in as: {username}
                 </p>
-                <Button variant='danger' className ='logout-button' onClick={handleLogout}>
+                <Button className ='logout-button' onClick={handleLogout}>
                     Logout
                 </Button>
             </div>

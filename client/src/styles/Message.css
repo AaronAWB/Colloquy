@@ -3,7 +3,7 @@
 }
 
 .message-content{
-    background-color: #ffffff;
+    background-color: rgb(218, 215, 215);
     color: #000000;
     max-width: 80%;
     padding: 8px 16px;
@@ -17,11 +17,27 @@
     white-space: normal;
 }
 
-.user-message {
-    background-color: teal !important;
-    color: white;
+.message {
+    background-color: #e6e4e8;
+    color: darkgrey !important;
 }
 
-.username, .message {
-    color: grey;
+.username {
+    color: #018786;
+    font-weight: bold;
 }
+
+.user-message {
+    background-color: #3a2d49 !important;
+    color: #e6e4e8;
+}
+
+.user-message .username {
+    color: #bb86fc;
+    font-weight: bold;
+}
+
+.user-mesage .message {
+    color: #e6e4e8;
+}
+

@@ -25,7 +25,7 @@
 }
 
 .username-input, .password-input {
-    background-color: black !important;
+    background-color: rgb(70, 70, 70) !important;
     color: rgb(218, 215, 215) !important;
     border: none !important;
 }

@@ -7,7 +7,7 @@ const Message = ({ username, message, time, isUserMessage }) => {
             <div className={`message-content ${isUserMessage ? ' user-message' : ''}`}>
                 <span className='username'>{username}: </span>
                 <span classame='message'>{message}</span>
-                <span className='time'> - [{time}]</span>
+                {/* <span className='time'> - [{time}]</span> */}
             </div>
         </div>
     );
