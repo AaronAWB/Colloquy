@@ -194,7 +194,7 @@ class DB_Connection:
         except(Exception, psycopg2.DatabaseError) as error:
             print(f'Error inserting data: {error}')
 
-        return f"Channel {data['Channel_Name']} created!"
+        return {"ChannelName": table_name}
         
 db_connection = DB_Connection()
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { ListGroup } from 'react-bootstrap';
 import axios from 'axios';
+import { ListGroup } from 'react-bootstrap';
+import { socket } from '@Utils/index';
 import '@Styles/Channels.css'
 
 const ChannelList = ({ handleChannelChange }) => {
@@ -13,9 +14,18 @@ const ChannelList = ({ handleChannelChange }) => {
         .then(res => {
             setChannels(res.data);
             setSelectedChannel(res.data[0]);
+            console.log(res.data)
         })
         .catch (err => {
             console.log(err)
+        })
+    }, []);
+
+    useEffect(() => {
+        socket.on('channel_added', (data) => {
+            console.log(data)
+            setChannels(prevChannels => [...prevChannels, data]);
+            console.log(`New channel added: ${JSON.stringify(data)}`)
         })
     }, []);
 
