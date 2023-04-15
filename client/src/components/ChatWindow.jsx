@@ -59,6 +59,7 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
                 username={message.Username}
                 message={message.Message}
                 time={message.CreatedAt}
+                isUserMessage={message.UserId === userId}
             />
         ));
     }
