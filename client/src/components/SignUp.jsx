@@ -55,10 +55,10 @@ function SignUp({ hide, show }) {
                 </Form>
             </Modal.Body>
             <Modal.Footer className='signup-modal-footer'>
-                <Button variant='secondary' data-dismiss='modal' onClick={hide}>
+                <Button className='modal-dismiss-button' data-dismiss='modal' onClick={hide}>
                     Close
                 </Button>
-                <Button variant='primary' type='submit' onClick={handleSubmit}>
+                <Button className='modal-submit-button' type='submit' onClick={handleSubmit}>
                     Submit
                 </Button>
             </Modal.Footer>

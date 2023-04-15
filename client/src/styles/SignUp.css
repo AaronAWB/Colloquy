@@ -43,3 +43,23 @@
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
+
+.modal-dismiss-button {
+    background-color: #cf6679 !important;
+    border: none !important;
+}
+
+.modal-dismiss-button:hover {
+    background-color: #b84c5e !important;
+    border: none !important;
+}
+
+.modal-submit-button {
+    background-color: #018786 !important;
+    border: none !important;
+}
+
+.modal-submit-button:hover {
+    background-color: #016e6c !important;
+    border: none !important;
+}

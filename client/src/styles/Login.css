@@ -36,11 +36,18 @@
 
 .login-button {
     width: 150px;
+    background-color: #018786 !important;
+    border: none !important;
+}
+
+.login-button:hover {
+    background-color: #01736c !important;
+    border: none !important;
 }
 
 .signup-prompt, .guest-prompt {
     color: grey;
-    padding-top: 15px;
+    padding-top: 25px;
     display: flex;
     justify-content: center;
 }

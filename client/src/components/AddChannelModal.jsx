@@ -20,10 +20,10 @@ const AddChannelModal = ({ show, hide }) => {
 
     return(
         <Modal className='add-channel-modal' centered show={show} onHide={hide} backdrop='static'>
-            <Modal.Header closeButton>
+            <Modal.Header className='add-channel-modal-header' closeButton>
                 <Modal.Title className='modal-title text-center'>Add Channel</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className='add-channel-modal-body'>
                 <Form>
                     <p>
                         Add a new channel! Name cannot be more than 15 characters.
@@ -38,7 +38,7 @@ const AddChannelModal = ({ show, hide }) => {
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='add-channel-modal-footer'>
                 <Button variant='secondary' data-dismiss='modal' onClick={hide}>
                     Close
                 </Button>

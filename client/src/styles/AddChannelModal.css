@@ -1,0 +1,9 @@
+.add-channel-modal-header, .add-channel-modal-footer {
+    background-color: rgb(28, 28, 28) !important;
+    border-color: darkgray !important;
+}
+
+.add-channel-modal-body {
+    background-color: rgb(28, 28, 28) !important;
+}
+
