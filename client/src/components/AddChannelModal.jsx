@@ -29,7 +29,6 @@ const AddChannelModal = ({ show, hide }) => {
                         Add a new channel! Name cannot be more than 15 characters.
                     </p>
                     <Form.Group>
-                        <Form.Label>Channel Name</Form.Label>
                         <Form.Control 
                             type='text' 
                             placeholder='Enter channel name'

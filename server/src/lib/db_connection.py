@@ -184,8 +184,9 @@ class DB_Connection:
             cur.execute(create_channel_query)
             conn.commit()
 
-            channels_update_query = f"INSERT INTO channels (\"ChannelName\") VALUES ('{table_name}')"
+            channels_update_query = f"INSERT INTO channels (\"ChannelName\") VALUES ('{table_name}') RETURNING \"Id\""
             cur.execute(channels_update_query)
+            channel_id = cur.fetchone()[0]
             conn.commit()
             
             cur.close()
@@ -194,7 +195,7 @@ class DB_Connection:
         except(Exception, psycopg2.DatabaseError) as error:
             print(f'Error inserting data: {error}')
 
-        return {"ChannelName": table_name}
+        return {"ChannelName": table_name, "Id": channel_id}
         
 db_connection = DB_Connection()
 
