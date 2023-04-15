@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ChannelList, ChatWindow } from '@Components/index';
+import { ChannelList, ChatWindow, AddChannelModal } from '@Components/index';
 import { AuthMethods, socketDisconnect } from '@Utils/index';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '@Styles/Chat.css';
@@ -14,10 +14,14 @@ function Chat () {
     const [username, setUsername] = useState('Guest');
     const [decodedToken, setDecodedToken] = useState("");
     const [userId, setUserId] = useState("");
+    const [showChannelModal, setShowChannelModal] = useState(false);
 
     const auth = new AuthMethods();
     const navigate = useNavigate();
     const isGuest = username === 'Guest'
+    
+    const handleShowChannelModal = () => {setShowChannelModal(true)};
+    const handleHideChannelModal = () => {setShowChannelModal(false)};
     
     useEffect(() => {
         if (!auth.loggedIn()) {navigate("/login")}
@@ -46,7 +50,8 @@ function Chat () {
     const handleChannelChange = (channel) => {
             setCurrentChannel(channel);
         };
-    
+
+  
     const getUsername = async () => {
         try {
             const res = await axios.get(`/api/users/${userId}`)
@@ -79,6 +84,14 @@ function Chat () {
                 <div className='mt-3'>
                     <ChannelList handleChannelChange={handleChannelChange} />
                 </div>
+                <Button className='new-channel-button mt-3' onClick={handleShowChannelModal}> 
+                    + New Channel
+                </Button>
+                <AddChannelModal 
+                    show = {showChannelModal}
+                    hide = {handleHideChannelModal}
+                    >
+                </AddChannelModal>
             </Col>
             <Col md={9}>
                 <ChatWindow 
