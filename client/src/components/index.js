@@ -1,5 +1,5 @@
 import SignUp from './SignUp';
-import ChannelList from './Channels';
+import ChannelList from './ChannelList';
 import ChatWindow from './ChatWindow';
 import withAuth from './withAuth';
 import Message from './Message';

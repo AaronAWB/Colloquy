@@ -51,7 +51,6 @@ function Chat () {
             setCurrentChannel(channel);
         };
 
-  
     const getUsername = async () => {
         try {
             const res = await axios.get(`/api/users/${userId}`)
@@ -81,7 +80,7 @@ function Chat () {
                 <div className='mt-3 channels-title-container rounded shadow'>
                     <h3 className='channels-title'>Channels</h3>
                 </div>
-                <div className='mt-3'>
+                <div className='channel-list-container mt-3'>
                     <ChannelList handleChannelChange={handleChannelChange} />
                 </div>
                 <Button className='new-channel-button mt-3' onClick={handleShowChannelModal}> 

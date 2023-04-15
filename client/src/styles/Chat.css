@@ -29,9 +29,9 @@ body {
     padding: 10px;
 }
 
-.channels-container {
-    min-height: 700px;
-    background: rgb(28, 28, 28) !important;
+.channel-list-container {
+    max-height: 563px;
+    overflow-y: auto;
 }
 
 .chat-container {
@@ -46,5 +46,5 @@ body {
 }
 
 .message-bar {
-    background: black;
+    background: rgb(70, 70, 70) !important;
 }

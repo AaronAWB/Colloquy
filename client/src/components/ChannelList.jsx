@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ListGroup } from 'react-bootstrap';
 import { socket } from '@Utils/index';
-import '@Styles/Channels.css'
+import '@Styles/ChannelList.css'
 
 const ChannelList = ({ handleChannelChange }) => {
   
