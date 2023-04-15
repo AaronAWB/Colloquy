@@ -34,6 +34,17 @@ body {
     overflow-y: auto;
 }
 
+.new-channel-button {
+    background: #3700b3 !important;
+    color:  rgb(218, 215, 215) !important;
+    border: none !important;
+}
+
+.new-channel-button:hover {
+    background-color: #30009c !important;
+    border: none !important;
+}
+
 .chat-container {
     min-height: 700px;
     background: rgb(28, 28, 28) !important;
@@ -48,3 +59,4 @@ body {
 .message-bar {
     background: rgb(70, 70, 70) !important;
 }
+

@@ -83,7 +83,7 @@ function Chat () {
                 <div className='channel-list-container mt-3'>
                     <ChannelList handleChannelChange={handleChannelChange} />
                 </div>
-                <Button className='new-channel-button mt-3' onClick={handleShowChannelModal}> 
+                <Button className='new-channel-button btn-sm mt-3' onClick={handleShowChannelModal}> 
                     + New Channel
                 </Button>
                 <AddChannelModal 
