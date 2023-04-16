@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ChannelList, ChatWindow, AddChannelModal } from '@Components/index';
-import { AuthMethods, socketDisconnect } from '@Utils/index';
+import { AuthMethods, socket, socketConnect, socketDisconnect } from '@Utils/index';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '@Styles/Chat.css';
-
-
 
 function Chat () {
 
@@ -26,18 +24,24 @@ function Chat () {
     useEffect(() => {
         if (!auth.loggedIn()) {navigate("/login")}
         setDecodedToken(auth.decode());
-      }, []);
+        }, []);
+
+    useEffect(() => {
+        if (auth.loggedIn() && !socket.connected) {
+            socketConnect();
+            };
+        }, []);
 
     useEffect(() => {
     if (decodedToken) {
         setUserId(decodedToken.sub);
-    }
+        };
     }, [decodedToken]);
 
     useEffect(() => {
         if (userId) {
-            getUsername();
-        }
+            getUsername()
+            };
     }, [userId]);
 
     const handleLogout = e => {
@@ -48,7 +52,7 @@ function Chat () {
         };
 
     const handleChannelChange = (channel) => {
-            setCurrentChannel(channel);
+        setCurrentChannel(channel);
         };
 
     const getUsername = async () => {
@@ -57,8 +61,8 @@ function Chat () {
             setUsername(res.data.Username);
         } catch (err) {
             console.log(err)
-        }
-    }
+            };
+        };
 
     return (
         

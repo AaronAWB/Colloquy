@@ -23,7 +23,7 @@ function SignUp({ hide, show }) {
                 hide();
             } catch (err) {
                 console.log(err)
-            }
+            };
         }
     };
 

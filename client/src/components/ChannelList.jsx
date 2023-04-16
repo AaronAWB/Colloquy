@@ -14,11 +14,10 @@ const ChannelList = ({ handleChannelChange }) => {
         .then(res => {
             setChannels(res.data);
             setSelectedChannel(res.data[0]);
-            console.log(res.data)
-        })
+            })
         .catch (err => {
             console.log(err)
-        })
+            })
     }, []);
 
     useEffect(() => {
@@ -37,7 +36,7 @@ const ChannelList = ({ handleChannelChange }) => {
             handleChannelChange(channelName);
         } catch (err) {
             console.error(err);
-        }
+        };
     };
 
   return (

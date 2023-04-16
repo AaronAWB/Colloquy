@@ -19,10 +19,6 @@ function Login () {
         if (auth.loggedIn()) {navigate('/')};
     }, []);
 
-    useEffect(() => {
-        console.log(`Login error state is: ${loginError}`)
-    }, [loginError])
-
     const handleLogin = async e => {
         e.preventDefault();
         try {
