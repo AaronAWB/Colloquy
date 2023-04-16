@@ -80,5 +80,7 @@ background-color: rgba(0, 0, 0, 0.4);
 
 .message-bar {
     background: rgb(70, 70, 70) !important;
+    border: none !important;
+    color: rgb(218, 215, 215) !important;
 }
 
