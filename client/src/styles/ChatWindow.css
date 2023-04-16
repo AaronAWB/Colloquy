@@ -5,6 +5,39 @@
     flex-direction: column-reverse;
 }
 
+.message-date-divider {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+  margin: 10px 0;
+}
+
+.message-date-divider .message-date {
+  background-color: #333333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.message-date-divider .left-line,
+.message-date-divider .right-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: grey;
+}
+
+.message-date-divider .left-line {
+  margin-right: 10px;
+}
+
+.message-date-divider .right-line {
+  margin-left: 10px;
+}
 .message-bar-container {
     margin-top: auto;
 }

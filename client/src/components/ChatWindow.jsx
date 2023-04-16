@@ -58,7 +58,11 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
                 <div key={index}>
                     {dateHasChanged && (
                         <div className='message-date-divider'>
-                            <span>{messageDate}</span>
+                            <div className='left-line'></div>
+                            <div className='message-date'>
+                                <span>{messageDate}</span>
+                            </div>
+                            <div className='right-line'></div>
                         </div>
                     )}
                     <Message 
