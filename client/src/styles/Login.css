@@ -6,6 +6,23 @@
     transform: translate(-50%, -50%);
 }
 
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.alert-container {
+    width: 522px !important;
+    margin-bottom: 20px;
+}
+
+.login-alert {
+    width: 100%;
+}
+
 .login-box {
     height: 350px !important;
     width: 500px !important;
