@@ -51,7 +51,14 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
     const renderMessages = () => {
         let prevMessageDate = null;
         return displayedMessages.map((message, index) => {
-            const messageDate = new Date(message.CreatedAt).toLocaleDateString();
+            const messageDate = new Date(message.CreatedAt).toLocaleDateString(
+                undefined,
+                {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                }
+            );
             const dateHasChanged = messageDate !== prevMessageDate;
             prevMessageDate = messageDate;
             return (
