@@ -7,3 +7,40 @@
     background-color: rgb(28, 28, 28) !important;
 }
 
+.add-channel-modal-alert {
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.add-channel-modal-text {
+    color: #8a8a8a !important;
+}
+
+.channel-name-input {
+    background: rgb(70, 70, 70) !important;
+    color: rgb(218, 215, 215) !important;
+    border: none !important;
+}
+
+.add-channel-modal-close-button {
+    background-color: #cf6679 !important;
+    border: none !important;
+}
+
+.add-channel-modal-close-button:hover {
+    background-color: #b84c5e !important;
+    border: none !important;
+}
+
+.add-channel-modal-submit-button {
+    background-color: #018786 !important;
+    border: none !important;
+}
+
+.add-channel-modal-submit-button:hover {
+    background-color: #016e6c !important;
+    border: none !important;
+}
+
+
+

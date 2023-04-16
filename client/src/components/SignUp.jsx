@@ -30,7 +30,7 @@ function SignUp({ hide, show }) {
             <Modal.Body className='signup-modal-body'>
                 <p className='signup-text'>
                     Sign up to gain access to the chat. 
-                    Usernames cannot contain spaces or be longer than 12 charcters.
+                    Usernames cannot be longer than 12 characters or contain spaces.
                 </p>
                 <Form className='signup-modal-form' onSubmit={handleSubmit}>
                     <Form.Group className='signup-modal-form mt-4'>
