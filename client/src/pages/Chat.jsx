@@ -60,10 +60,6 @@ function Chat () {
         }
     }
 
-    useEffect(() => {
-        console.log(`The channel state in the Chat component is ${currentChannel}`)
-        }, [currentChannel])
-
     return (
         
         <Container>
@@ -83,7 +79,10 @@ function Chat () {
                 <div className='channel-list-container mt-3'>
                     <ChannelList handleChannelChange={handleChannelChange} />
                 </div>
-                <Button className='new-channel-button btn-sm mt-3' onClick={handleShowChannelModal}> 
+                <Button 
+                    className='new-channel-button btn-sm mt-3' 
+                    onClick={handleShowChannelModal} 
+                    disabled={isGuest} > 
                     +  
                 </Button>
                 <AddChannelModal 

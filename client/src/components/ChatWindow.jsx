@@ -10,14 +10,10 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
 
     const [newMessage, setNewMessage] = useState("");
     const [displayedMessages, setDisplayedMessages] = useState([]);
-
+    
     useEffect(() => {
         getChannelMessages();
     }, [currentChannel]);
-
-    useEffect(() => {
-        console.log(displayedMessages);
-    }, [displayedMessages]);
 
     useEffect(() => {
         socket.on('message_added', (data) => {
@@ -30,8 +26,8 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
     const getChannelMessages = async () => {
         try {
             const res = await axios.get(`/api/messages/${currentChannel}`);
-            console.log(res.data)
-            setDisplayedMessages(res.data);
+            const data = res.data;
+            setDisplayedMessages(data);
         } catch (err) {
             console.log(err)
         }
@@ -44,7 +40,7 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
                 message: newMessage, 
                 channel: currentChannel, 
                 userId: userId 
-            }
+                }
         console.log(messageData)
             socket.emit('add_message', messageData);
             setNewMessage("");
@@ -53,15 +49,27 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
 
     
     const renderMessages = () => {
-        return displayedMessages.map((message) => (
-            <Message 
-                key={message.Id}
-                username={message.Username}
-                message={message.Message}
-                time={message.CreatedAt}
-                isUserMessage={message.UserId === userId}
-            />
-        ));
+        let prevMessageDate = null;
+        return displayedMessages.map((message, index) => {
+            const messageDate = new Date(message.CreatedAt).toLocaleDateString();
+            const dateHasChanged = messageDate !== prevMessageDate;
+            prevMessageDate = messageDate;
+            return (
+                <div key={index}>
+                    {dateHasChanged && (
+                        <div className='message-date-divider'>
+                            <span>{messageDate}</span>
+                        </div>
+                    )}
+                    <Message 
+                        key={message.Id}
+                        username={message.Username}
+                        message={message.Message}
+                        time={message.CreatedAt}
+                        isUserMessage={message.UserId === userId}
+                    />
+                </div>
+            )});
     }
 
     return(
