@@ -26,7 +26,7 @@ const AddChannelModal = ({ show, hide }) => {
             <Modal.Body className='add-channel-modal-body'>
                 <Form>
                     <p>
-                        Add a new channel! Name cannot be more than 15 characters.
+                        Add a new channel! Name cannot be more than 15 characters or contain spaces.
                     </p>
                     <Form.Group>
                         <Form.Control 

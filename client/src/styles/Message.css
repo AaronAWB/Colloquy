@@ -3,8 +3,8 @@
 }
 
 .message-content{
-    background-color: rgb(218, 215, 215);
-    color: #000000;
+    background-color: #2d2d2d;
+    color: #8a8a8a;
     max-width: 80%;
     padding: 8px 16px;
     border-radius: 15px;
@@ -17,13 +17,8 @@
     white-space: normal;
 }
 
-.message {
-    background-color: #e6e4e8;
-    color: darkgrey !important;
-}
-
 .username {
-    color: #3a2d49;
+    color: #dbdbdb;
     font-weight: bold;
 }
 
