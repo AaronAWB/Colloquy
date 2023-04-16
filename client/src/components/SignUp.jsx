@@ -1,24 +1,29 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Alert } from 'react-bootstrap';
 import '@Styles/SignUp.css'
 
 function SignUp({ hide, show }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = async e => {
         e.preventDefault();
-        let path = '/api/users'
-        try {
-            const res = await axios.post(path, {username, password});
-            console.log(res);
-            setUsername("");
-            setPassword("");
-            hide();
-        } catch (err) {
-            console.log(err)
+        if (username.length > 12 || username.includes(" ")) {
+            setShowAlert(true);
+        } else {
+            let path = '/api/users'
+            try {
+                const res = await axios.post(path, {username, password});
+                console.log(res);
+                setUsername("");
+                setPassword("");
+                hide();
+            } catch (err) {
+                console.log(err)
+            }
         }
     };
 
@@ -27,6 +32,14 @@ function SignUp({ hide, show }) {
             <Modal.Header className='signup-modal-header'>
                 <Modal.Title className='modal-title text-center'>Sign Up</Modal.Title>
             </Modal.Header>
+            <Alert
+                className='signup-modal-alert' 
+                variant="danger" 
+                show={showAlert} 
+                onClose={() => setShowAlert(false)} dismissible
+                >
+                Username cannot be more than 12 characters or contain spaces.
+            </Alert>
             <Modal.Body className='signup-modal-body'>
                 <p className='signup-text'>
                     Sign up to gain access to the chat. 

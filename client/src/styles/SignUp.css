@@ -16,6 +16,11 @@
     color:#03DAC6 !important;
 }
 
+.signup-modal-alert {
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+}
+
 .signup-text {
     color: grey;
 }
