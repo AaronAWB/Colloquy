@@ -16,12 +16,13 @@
 
 .message-date-divider .message-date {
     background-color: rgb(70, 70, 70);
-    color: white;
+    color: rgb(218, 215, 215);
     padding: 5px 10px;
     border-radius: 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-size: 14px;
 }
 
 .message-date-divider .left-line,

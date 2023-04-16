@@ -20,7 +20,7 @@ const AddChannelModal = ({ show, hide }) => {
             }
             setChannelName("");
             hide();
-        }
+        };
     };
 
     return(

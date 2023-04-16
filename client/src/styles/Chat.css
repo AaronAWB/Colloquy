@@ -19,9 +19,14 @@ body {
 }
 
 .user-id {
-    padding-top: 10px;
+    padding-top: 17px;
     padding-right: 30px;
     color: rgb(218, 215, 215);
+}
+
+.user-id-username {
+    color: #bb86fc;
+    font-weight: bold;
 }
 
 .channels-title-container {

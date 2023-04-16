@@ -47,7 +47,6 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
         };
     };
 
-    
     const renderMessages = () => {
         let prevMessageDate = null;
         return displayedMessages.map((message, index) => {

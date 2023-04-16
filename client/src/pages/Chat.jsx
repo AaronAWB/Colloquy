@@ -69,7 +69,7 @@ function Chat () {
         <Container>
             <div className='logout-button-container mt-3'>
                 <p className='user-id'>
-                    Logged in as: {username}
+                    Logged in as: <span className='user-id-username'>{username}</span>
                 </p>
                 <Button className ='logout-button' onClick={handleLogout}>
                     Logout
