@@ -40,8 +40,7 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
                 message: newMessage, 
                 channel: currentChannel, 
                 userId: userId 
-                }
-        console.log(messageData)
+                };
             socket.emit('add_message', messageData);
             setNewMessage("");
         };
@@ -86,21 +85,22 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
         <div className='chat-container rounded shadow p-3 mb-3 mt-3'>
             <MessagesContainer content={renderMessages()} />
             <div className='message-bar-container'>
-                <InputGroup>
-                    <Form.Control 
-                        className='message-bar shadow' 
-                        type='text' 
-                        id='messageInput' 
-                        value={newMessage}
-                        onChange={e => setNewMessage(e.target.value)}
-                        />
-                    <Button 
-                        className='send-button shadow'
-                        type='submit' 
-                        disabled={guest} 
-                        onClick={handleSendMessage}
-                        >Send</Button>
-                </InputGroup>
+                <Form onSubmit={handleSendMessage}>
+                    <InputGroup>
+                        <Form.Control 
+                            className='message-bar shadow' 
+                            type='text' 
+                            id='messageInput' 
+                            value={newMessage}
+                            onChange={e => setNewMessage(e.target.value)}
+                            />
+                        <Button 
+                            className='send-button shadow'
+                            type='submit' 
+                            disabled={guest} 
+                            >Send</Button>
+                    </InputGroup>
+                </Form>
             </div>
         </div>
     );
