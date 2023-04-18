@@ -1,5 +1,5 @@
 from flask import request
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, join_room
 from src import create_app
 from src.lib.db_connection import db_connection
 
@@ -14,9 +14,11 @@ def handle_connection():
 def handle_add_message(data):
     message = data['message']
     channel = data['channel']
+    print(channel)
     userId = data['userId']
     message = db_connection.add_message(message, channel, userId)
-    socketio.emit('message_added', message)
+    join_room(channel)
+    socketio.emit('message_added', message, room=channel)
 
 @socketio.on('update_messages')
 def handle_update_messages(data):

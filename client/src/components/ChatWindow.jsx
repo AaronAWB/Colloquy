@@ -17,9 +17,7 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
 
     useEffect(() => {
         socket.on('message_added', (data) => {
-            console.log(data)
             setDisplayedMessages(prevMessages => [...prevMessages, data]);
-            console.log(`Returned new message: ${JSON.stringify(data)}`)
         })
     }, []);
 
@@ -31,7 +29,7 @@ const ChatWindow = ({ guest, currentChannel, userId }) => {
         } catch (err) {
             console.log(err)
         }
-    }
+    };
 
     const handleSendMessage = e => {
         e.preventDefault();

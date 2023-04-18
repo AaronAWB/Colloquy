@@ -24,16 +24,16 @@ const ChannelList = ({ handleChannelChange }) => {
         socket.on('channel_added', (data) => {
             console.log(data)
             setChannels(prevChannels => [...prevChannels, data]);
-            console.log(`New channel added: ${JSON.stringify(data)}`)
         })
     }, []);
 
     const handleChannelClick = (channel) => {
         const channelName = channel.ChannelName;
+        const previousChannel = selectedChannel.ChannelName;
         setSelectedChannel(channel);
-        console.log(`Channel changed to ${channelName}`);
+        socket.emit('join', channelName);
         try {
-            handleChannelChange(channelName);
+            handleChannelChange(channelName, previousChannel);
         } catch (err) {
             console.error(err);
         };
