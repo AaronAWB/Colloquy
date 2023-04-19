@@ -7,7 +7,7 @@ import '@Styles/ChannelList.css'
 const ChannelList = ({ handleChannelChange }) => {
   
     const [channels, setChannels] = useState([]);
-    const [selectedChannel, setSelectedChannel] = useState(null);
+    const [selectedChannel, setSelectedChannel] = useState('General');
 
     useEffect(() => {
         axios.get('/api/channels')
@@ -21,17 +21,19 @@ const ChannelList = ({ handleChannelChange }) => {
     }, []);
 
     useEffect(() => {
+        socket.emit('join', selectedChannel.ChannelName);
+    }, [selectedChannel])
+
+    useEffect(() => {
         socket.on('channel_added', (data) => {
-            console.log(data)
             setChannels(prevChannels => [...prevChannels, data]);
-        })
+        });
     }, []);
 
     const handleChannelClick = (channel) => {
         const channelName = channel.ChannelName;
         const previousChannel = selectedChannel.ChannelName;
         setSelectedChannel(channel);
-        socket.emit('join', channelName);
         try {
             handleChannelChange(channelName, previousChannel);
         } catch (err) {
