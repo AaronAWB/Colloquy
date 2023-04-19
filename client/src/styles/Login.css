@@ -34,6 +34,7 @@
     display: flex;
     justify-content: center;
     padding-top: 10px;
+    cursor: default;
 }
 
 .form-lable {
@@ -67,6 +68,7 @@
     padding-top: 25px;
     display: flex;
     justify-content: center;
+    cursor: default;
 }
 
 a:link, a:visited {

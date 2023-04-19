@@ -22,11 +22,13 @@ body {
     padding-top: 17px;
     padding-right: 30px;
     color: rgb(218, 215, 215);
+    cursor: default;
 }
 
 .user-id-username {
     color: #bb86fc;
     font-weight: bold;
+    cursor: default;
 }
 
 .channels-title-container {
@@ -36,6 +38,7 @@ body {
 
 .channels-title {
     padding: 10px;
+    cursor: default;
 }
 
 .channel-list-container {
