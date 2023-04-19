@@ -23,7 +23,6 @@ class DB_Connection:
             
             cur.execute(query)
             rows = cur.fetchall()
-            print(rows)
             
             cur.close()
             conn.close()
@@ -162,8 +161,6 @@ class DB_Connection:
         return {"Success": success_message}
     
     def add_channel(self, data):
-
-        print(data)
 
         try:
             

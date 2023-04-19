@@ -1,5 +1,5 @@
 from flask import request
-from flask_socketio import SocketIO, join_room
+from flask_socketio import SocketIO, join_room, leave_room
 from src import create_app
 from src.lib.db_connection import db_connection
 
@@ -10,6 +10,16 @@ socketio = SocketIO(app, cors_allowed_origins='*', logger=True)
 def handle_connection():
     print("--------- USER CONNECTED ---------: ", request.sid)
 
+@socketio.on('join')
+def handle_join(data):
+    join_room(data)
+    print('User joined channel: ', data)
+
+@socketio.on('leave')
+def handle_leave(data):
+    leave_room(data)
+    print('User left channel: ', data)
+
 @socketio.on('add_message')
 def handle_add_message(data):
     message = data['message']
@@ -17,7 +27,6 @@ def handle_add_message(data):
     print(channel)
     userId = data['userId']
     message = db_connection.add_message(message, channel, userId)
-    join_room(channel)
     socketio.emit('message_added', message, room=channel)
 
 @socketio.on('update_messages')
