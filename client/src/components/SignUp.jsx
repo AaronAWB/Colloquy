@@ -7,28 +7,40 @@ function SignUp({ hide, show }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [alertMessage, setAlertMessage] = useState("");
     const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = async e => {
         e.preventDefault();
-        if (username.length > 15 || username.includes(" ")) {
+        if (username.length > 15 || username.includes(" ") || username === "") {
+            setAlertMessage('Username cannot be blank, longer than 15 characters, or contain spaces');
             setShowAlert(true);
         } else {
             let path = '/api/users'
             try {
                 const res = await axios.post(path, {username, password});
-                console.log(res);
+                console.log(res.data);
+                const confirmation = res.data;
+                displayConfirmation(confirmation);
                 setUsername("");
                 setPassword("");
-                hide();
             } catch (err) {
                 console.log(err)
+                };
             };
-        }
-    };
+        };
+
+    const displayConfirmation = confirmation => {
+        if (!confirmation["Success"]) {
+            setAlertMessage(`Username '${username}' already exists`);
+            setShowAlert(true)
+            } else {
+                hide();
+            }; 
+        };
 
     return (
-        <Modal className='signup-modal' centered show={show} onHide={hide} backdrop='static'>
+        <Modal className='signup-modal' centered show={show} onHide={hide} onExit={() => (setShowAlert(false))} backdrop='static'>
             <Modal.Header className='signup-modal-header'>
                 <Modal.Title className='modal-title text-center'>Sign Up</Modal.Title>
             </Modal.Header>
@@ -38,12 +50,12 @@ function SignUp({ hide, show }) {
                 show={showAlert} 
                 onClose={() => setShowAlert(false)} dismissible
                 >
-                Username cannot be more than 12 characters or contain spaces.
+                {alertMessage}
             </Alert>
             <Modal.Body className='signup-modal-body'>
                 <p className='signup-text'>
                     Sign up to gain access to the chat. 
-                    Usernames cannot be longer than 12 characters or contain spaces.
+                    Usernames cannot be longer than 15 characters or contain spaces.
                 </p>
                 <Form className='signup-modal-form' onSubmit={handleSubmit}>
                     <Form.Group className='signup-modal-form mt-4'>

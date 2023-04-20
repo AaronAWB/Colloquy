@@ -147,12 +147,13 @@ class DB_Connection:
             conn = psycopg2.connect(self.params)
             cur = conn.cursor()
 
-            query = 'SELECT 1 FROM users WHERE "Username" = %s'
+            query = 'SELECT 1 FROM users WHERE "Username" = (%s)'
             cur.execute(query, (username,))
             exists = cur.fetchone()
 
             if exists:
                 return {"Error": f"User {username} already exists."}
+            
             else:
                 query = 'INSERT INTO users ("Username", "Password") VALUES (%s, %s)'
                 cur.execute(query, (username, password))
