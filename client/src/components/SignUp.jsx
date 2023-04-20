@@ -13,30 +13,24 @@ function SignUp({ hide, show }) {
     const handleSubmit = async e => {
         e.preventDefault();
         if (username.length > 15 || username.includes(" ") || username === "") {
-            setAlertMessage('Username cannot be blank, longer than 15 characters, or contain spaces');
+            setAlertMessage('Username cannot be blank, longer than 15 characters, or contain spaces. Please choose a new username.');
             setShowAlert(true);
         } else {
             let path = '/api/users'
             try {
                 const res = await axios.post(path, {username, password});
                 console.log(res.data);
-                const confirmation = res.data;
-                displayConfirmation(confirmation);
+                if (res.data["Error"]) {
+                    setAlertMessage(`Username '${username}' already exists`);
+                    setShowAlert(true)
+                }
                 setUsername("");
                 setPassword("");
+                hide();
             } catch (err) {
                 console.log(err)
                 };
             };
-        };
-
-    const displayConfirmation = confirmation => {
-        if (!confirmation["Success"]) {
-            setAlertMessage(`Username '${username}' already exists`);
-            setShowAlert(true)
-            } else {
-                hide();
-            }; 
         };
 
     return (
