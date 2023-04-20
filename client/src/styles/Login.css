@@ -16,11 +16,10 @@
 
 .alert-container {
     width: 522px !important;
-    margin-bottom: 10px !important;
-}
+};
 
 .login-alert {
-    width: 100%;
+    width: 100% !important;
 }
 
 .login-box {
