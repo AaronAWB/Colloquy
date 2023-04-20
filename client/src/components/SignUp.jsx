@@ -11,7 +11,7 @@ function SignUp({ hide, show }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        if (username.length > 12 || username.includes(" ")) {
+        if (username.length > 15 || username.includes(" ")) {
             setShowAlert(true);
         } else {
             let path = '/api/users'

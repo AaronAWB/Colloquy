@@ -146,19 +146,25 @@ class DB_Connection:
     
             conn = psycopg2.connect(self.params)
             cur = conn.cursor()
-            
-            query = f'INSERT INTO users ("Username", "Password") VALUES (%s, %s)'
-            cur.execute(query, (username, password))
+
+            query = 'SELECT 1 FROM users WHERE "Username" = %s'
+            cur.execute(query, (username,))
+            exists = cur.fetchone()
+
+            if exists:
+                return {"Error": f"User {username} already exists."}
+            else:
+                query = 'INSERT INTO users ("Username", "Password") VALUES (%s, %s)'
+                cur.execute(query, (username, password))
 
             conn.commit()
             cur.close()
             conn.close()
+
+            return {"Success": f"User {username} created!"}
         
         except(Exception, psycopg2.DatabaseError) as error:
             return {"Error": {error}}
-
-        success_message = f"User {username} created!"
-        return {"Success": success_message}
     
     def add_channel(self, data):
 
