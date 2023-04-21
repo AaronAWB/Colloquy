@@ -14,6 +14,19 @@
     height: 100vh;
 }
 
+.app-title {
+    color: #bb86fc;
+    font-weight: bold;
+    cursor: default;
+    padding-bottom: 30px;
+}
+
+.app-subtitle {
+    color: rgb(218, 215, 215);
+    cursor: default;
+    font-size: 20px;
+}
+
 .alert-container {
     width: 522px !important;
 }

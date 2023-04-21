@@ -55,6 +55,7 @@ function Login () {
     return (
         <Container className='content-container'>
             <div className='login-container'>
+                <h1 className='app-title'>Colloquy. <span className='app-subtitle'>A lightweight chat app.</span></h1>
                 <Container className='alert-container'>
                     {loginError && (
                     <Alert className='login-alert' variant="danger" onClose={() => setLoginError(false)} dismissible>
