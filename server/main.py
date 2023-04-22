@@ -24,20 +24,9 @@ def handle_leave(data):
 def handle_add_message(data):
     message = data['message']
     channel = data['channel']
-    print(channel)
     userId = data['userId']
     message = db_connection.add_message(message, channel, userId)
     socketio.emit('message_added', message, room=channel)
-
-@socketio.on('update_messages')
-def handle_update_messages(data):
-    messages = db_connection.get_table(data['channel'])
-    socketio.emit('updated_message_list', messages)
-
-@socketio.on('update_channel_list')
-def handle_update_channels():
-    channels = db_connection.get_table('channels')
-    socketio.emit('updated_channel_list', channels)
 
 @socketio.on('add_channel')
 def handle_add_channel(data):
