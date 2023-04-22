@@ -15,7 +15,7 @@
 }
 
 .app-title {
-    color: #bb86fc;
+    color: #03DAC6;
     font-weight: bold;
     cursor: default;
     padding-bottom: 30px;
@@ -36,7 +36,7 @@
 }
 
 .login-box {
-    height: 350px !important;
+    height: 280px !important;
     width: 500px !important;
     background-color: rgb(28, 28, 28) !important;
 }
@@ -66,13 +66,17 @@
 
 .login-button {
     width: 150px;
-    background-color: #018786 !important;
+    background-color: #3a2d49 !important;
     border: none !important;
 }
 
 .login-button:hover {
-    background-color: #01736c !important;
+    background-color: #5c4c6e !important;
     border: none !important;
+}
+
+.login-button-text {
+    color: #bb86fc  !important;
 }
 
 .signup-prompt, .guest-prompt {

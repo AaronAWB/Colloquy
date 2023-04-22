@@ -66,9 +66,6 @@ function Login () {
                 )}
                 </Container> 
                 <Container className="login-box rounded shadow">
-                <div className='login-title'>
-                    <h2>Login</h2>
-                </div>
                 <Form className='mt-3' onSubmit={handleLogin}>
                     <Form.Group controlId='formBasicUsername' className='mt-3'>
                         <Form.Control 
@@ -89,7 +86,9 @@ function Login () {
                             />     
                     </Form.Group>
                     <div className ='button-container'>
-                        <Button className='mt-3 login-button shadow' type='submit'>Sign In</Button>
+                        <Button className='mt-3 login-button shadow' type='submit'>
+                            <span className='login-button-text'>Sign In</span>
+                        </Button>
                     </div>
                 </Form>
                 <div className='signup-prompt'>
