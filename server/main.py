@@ -34,4 +34,4 @@ def handle_add_channel(data):
     socketio.emit ('channel_added', new_channel)
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=False)

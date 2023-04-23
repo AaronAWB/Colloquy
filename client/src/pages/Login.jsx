@@ -55,7 +55,6 @@ function Login () {
     return (
         <Container className='content-container'>
             <div className='login-container'>
-                <h1 className='app-title'>Colloquy. <span className='app-subtitle'>A lightweight chat app.</span></h1>
                 <Container className='alert-container'>
                     {loginError && (
                     <Alert className='login-alert' variant="danger" onClose={() => setLoginError(false)} dismissible>
@@ -65,7 +64,10 @@ function Login () {
                     </Alert>
                 )}
                 </Container> 
-                <Container className="login-box rounded shadow">
+                <Container className='login-box rounded shadow'>
+                <div className='app-title-container'>
+                    <h1 className='app-title'>Colloquy. <span className='app-subtitle'>A lightweight chat app.</span></h1>
+                </div>
                 <Form className='mt-3' onSubmit={handleLogin}>
                     <Form.Group controlId='formBasicUsername' className='mt-3'>
                         <Form.Control 

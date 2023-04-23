@@ -14,11 +14,18 @@
     height: 100vh;
 }
 
+.app-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
 .app-title {
     color: #03DAC6;
     font-weight: bold;
     cursor: default;
-    padding-bottom: 30px;
 }
 
 .app-subtitle {
@@ -36,7 +43,7 @@
 }
 
 .login-box {
-    height: 280px !important;
+    height: 325px !important;
     width: 500px !important;
     background-color: rgb(28, 28, 28) !important;
 }
@@ -62,6 +69,7 @@
 .button-container {
     display: flex;
     justify-content: center;
+    padding-bottom: 20px !important;
 }
 
 .login-button {
@@ -81,7 +89,6 @@
 
 .signup-prompt, .guest-prompt {
     color: grey;
-    padding-top: 25px;
     display: flex;
     justify-content: center;
     cursor: default;
