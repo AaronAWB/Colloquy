@@ -52,7 +52,6 @@ function Chat () {
         };
 
     const handleChannelChange = (channel, previousChannel) => {
-        console.log(`Changing from ${previousChannel} to ${channel}`)
         socket.emit('leave', previousChannel);
         setCurrentChannel(channel);
         };
