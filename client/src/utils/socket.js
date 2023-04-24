@@ -12,21 +12,21 @@ const socketDisconnect = () => {
     socket.disconnect();
 };
 
-socket.on('connect', () => {
-    console.log(`Socketio connected: ${socket.connected}`);
-});
+// socket.on('connect', () => {
+//     console.log(`Socketio connected: ${socket.connected}`);
+// });
 
-socket.on('connect', () => {
-    console.log(`Socket id: ${socket.id}`);
-});
+// socket.on('connect', () => {
+//     console.log(`Socket id: ${socket.id}`);
+// });
 
 socket.on('connect_error', (err) => {
     console.log(`connect_error due to ${err.message}`);
 });
 
-socket.on('disconnect', () => {
-    console.log(`Socketio connected: ${socket.connected}`);
-});
+// socket.on('disconnect', () => {
+//     console.log(`Socketio connected: ${socket.connected}`);
+// });
 
 
 export { socket, socketConnect, socketDisconnect };
