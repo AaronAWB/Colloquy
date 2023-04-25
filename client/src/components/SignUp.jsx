@@ -20,13 +20,14 @@ function SignUp({ hide, show }) {
             try {
                 const res = await axios.post(path, {username, password});
                 console.log(res.data);
-                if (res.data["Error"]) {
+                if (res.data['Error']) {
                     setAlertMessage(`Username '${username}' already exists`);
                     setShowAlert(true)
+                } else {
+                    hide();
                 }
                 setUsername("");
                 setPassword("");
-                hide();
             } catch (err) {
                 console.log(err)
                 };
