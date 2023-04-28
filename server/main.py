@@ -13,12 +13,10 @@ def handle_connection():
 @socketio.on('join')
 def handle_join(data):
     join_room(data)
-    print('User joined channel: ', data)
 
 @socketio.on('leave')
 def handle_leave(data):
     leave_room(data)
-    print('User left channel: ', data)
 
 @socketio.on('add_message')
 def handle_add_message(data):
