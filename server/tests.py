@@ -1,6 +1,6 @@
 import unittest
-from testing.postgresql import Postgresql
 import psycopg2
+from testing.postgresql import Postgresql
 from main import app
 from src.lib.db_connection import db_connection
 
@@ -26,11 +26,11 @@ class TestAuthenticateUser(unittest.TestCase):
 
 class TestAddMessage(unittest.TestCase):
     def setUp(self):
-        super().setUp()
         self.postgresql = Postgresql()
-        self.conn = psycopg2.connect(**self.postgresql.dsn())
+        self.conn = psycopg2.connect(self.postgresql.url())
+        db_connection.params = self.postgresql.url()
         self.cursor = self.conn.cursor()
-
+        
         create_users_table_query = ('''
             CREATE TABLE IF NOT EXISTS users (
                 "Id" SERIAL PRIMARY KEY,
@@ -41,7 +41,7 @@ class TestAddMessage(unittest.TestCase):
         self.conn.commit()
 
         create_user_query = ('INSERT INTO users ("Username") VALUES (%s)')
-        self.cursor.execute(create_user_query, ('user',))
+        self.cursor.execute(create_user_query, ('test_user',))
         self.conn.commit()
 
         self.cursor.execute("SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'users')")
@@ -81,7 +81,7 @@ class TestAddMessage(unittest.TestCase):
         expected_result = {
             "Id": 1,
             "UserId": userId,
-            "Username": "user",
+            "Username": "test_user",
             "Message": message,
             "Channel": channel,
             "CreatedAt": str(result["CreatedAt"])
@@ -93,7 +93,6 @@ class TestAddMessage(unittest.TestCase):
         self.cursor.close()
         self.conn.close()
         self.postgresql.stop()
-
 
 if __name__ == '__main__':
     unittest.main()
