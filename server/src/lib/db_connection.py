@@ -106,8 +106,6 @@ class DB_Connection:
     
     def add_message(self, message, channel, userId):
 
-        print('Add message db function triggered.')
-
         try:
             
             conn = psycopg2.connect(self.params)
@@ -188,7 +186,7 @@ class DB_Connection:
             cur.execute(create_channel_query)
             conn.commit()
 
-            channels_update_query = f"INSERT INTO channels (\"ChannelName\") VALUES ('{table_name}') RETURNING \"Id\""
+            channels_update_query = f'INSERT INTO channels ("ChannelName") VALUES ("{table_name}") RETURNING "Id"'
             cur.execute(channels_update_query)
             channel_id = cur.fetchone()[0]
             conn.commit()
