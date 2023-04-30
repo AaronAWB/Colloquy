@@ -1,6 +1,8 @@
+import os
 import unittest
 import psycopg2
 from testing.postgresql import Postgresql
+from dotenv import load_dotenv; load_dotenv()
 from main import app
 from src.lib.db_connection import db_connection
 
@@ -8,6 +10,7 @@ class TestAuthenticateUser(unittest.TestCase):
     
     def setUp(self):
         self.test_client = app.test_client(self)
+        db_connection.params = os.getenv("DB_CONNECTION_INFO_STRING")
 
     def test_valid_username_and_password(self):
         response = self.test_client.post('/api/authenticate', json={'username': 'Guest', 'password': 'GuestPwd'})
@@ -25,6 +28,7 @@ class TestAuthenticateUser(unittest.TestCase):
         self.assertIn('access_denied', response.json)
 
 class TestAddMessage(unittest.TestCase):
+
     def setUp(self):
         self.postgresql = Postgresql()
         self.conn = psycopg2.connect(self.postgresql.url())
@@ -44,11 +48,6 @@ class TestAddMessage(unittest.TestCase):
         self.cursor.execute(create_user_query, ('test_user',))
         self.conn.commit()
 
-        self.cursor.execute("SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'users')")
-        self.conn.commit()
-        exists = self.cursor.fetchone()[0]
-        print('users table exists:' , exists)
-
         create_test_channel_query = ('''
             CREATE TABLE IF NOT EXISTS test_channel (
                 "Id" SERIAL PRIMARY KEY,
@@ -60,11 +59,6 @@ class TestAddMessage(unittest.TestCase):
             ''')
         self.cursor.execute(create_test_channel_query)
         self.conn.commit()
-
-        self.cursor.execute("SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'test_channel')")
-        self.conn.commit()
-        exists = self.cursor.fetchone()[0]
-        print('test_channel table exists:' , exists)
         
     def test_add_message(self):
         message = "Test message."
