@@ -2,8 +2,9 @@ import os
 import unittest
 import psycopg2
 from testing.postgresql import Postgresql
+from unittest.mock import patch
 from dotenv import load_dotenv; load_dotenv()
-from main import app
+from main import app, handle_add_message
 from src.lib.db_connection import db_connection
 
 class TestAuthenticateUser(unittest.TestCase):
@@ -82,6 +83,34 @@ class TestAddMessage(unittest.TestCase):
         }
 
         self.assertDictEqual(result, expected_result)
+    
+    @patch('main.socketio.emit')
+    def test_handle_add_message(self, mock_emit):
+        data = {
+            'message': 'Test message.',
+            'channel': 'test_channel',
+            'userId': 1
+        }
+
+        with app.test_request_context():
+            handle_add_message(data)
+
+        def retrieve_datetime():
+            datetime_query = 'SELECT "CreatedAt" FROM test_channel WHERE "Id" = 1'
+            self.cursor.execute(datetime_query)
+            result = self.cursor.fetchone()[0]
+            return result.isoformat()
+        
+        expected_message = {
+            "Id": 1,
+            "UserId": data['userId'],
+            "Username": "test_user",
+            "Message": data['message'],
+            "Channel": data['channel'],
+            "CreatedAt": retrieve_datetime()
+        }
+        
+        mock_emit.assert_called_once_with('message_added', expected_message, room=data['channel'])
 
     def tearDown(self):
         self.cursor.close()
