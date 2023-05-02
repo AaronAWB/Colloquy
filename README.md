@@ -52,10 +52,10 @@ This app is a platform for experimentation and was a lot of fun to build. I plan
 
 1. Clone this repository to your local machine.
 2. Create a virtual environment and install the dependencies from requirements.txt.
-3. Create a .env file in the root directory and add the following environment variables:
+3. Create a new PostgresSQL database using the chat_app_schema.sql file in the root directory.
+4. Create a .env file in the root directory and add the following environment variables:
     * `DATABASE_URL` - the URL of your PostgreSQL database
     * `SECRET_KEY` - a secret key for generating webtokens
-4. Navigate to the server directory and run `python db.py` to create the database.
 5. Run `python main.py` to start the server.
 6. Navigate to the client directory and run `npm install` to install the dependencies.
 7. Run `npm run dev` to start the client.
@@ -63,7 +63,7 @@ This app is a platform for experimentation and was a lot of fun to build. I plan
 
 ## Author
 
-Aaron Brinckerhoff | <a href='https://www.linkedin.com/in/aaron-brinckerhoff-6b9a5340/'>LinkedIn</a> | Website
+Aaron Brinckerhoff - Full-Stack Software Developer | <a href='https://www.linkedin.com/in/aaron-brinckerhoff-6b9a5340/'>LinkedIn</a> | Website
 
 
 
