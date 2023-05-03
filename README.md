@@ -32,8 +32,9 @@ Try it <a href='https://colloquy.onrender.com'>here</a>.
 
 * Written in Python using the Flask framework.
 * Websockets communication uses the Flask-SocketIO library.
-* Webtoken is generated using the PyJWT library.
+* Webtokens are generated using the PyJWT library.
 * REST API is built using Flask-RESTX.
+* Database queries are handled using the psycopg2 library.
 * The app is served using Gunicorn and hosted on Render.com.
 * Data is stored in a PostgreSQL database hosted on elephantsql.com.
 
