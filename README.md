@@ -39,7 +39,7 @@ Try it <a href='https://colloquy.onrender.com'>here</a>.
 
 ## Future Features
 
-This app is a platform for experimentation and was a lot of fun to build. I plan to continue adding features to make it more functional, polished, and fun to use as my web development skills progress. Some of the features I plan to add are:
+This app was a lot of fun to build and will continue to be a platform for experimenting. I plan to continue adding features to make it more functional, polished, and fun to use as my web development skills progress. Some of the features I plan to add are:
 
 * The ability to see which users are currently online.
 * The ability to see if another user is currently typing.
