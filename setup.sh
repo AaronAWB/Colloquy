@@ -31,7 +31,7 @@ echo "DATABASE_URL = 'postgressqql+psycopg2://$username:$password@$host/$db_name
 echo "SECRET_KEY = 'terces'" >> .env
 
 export PGPASSWORD=$password
-psql -U $username -c "CREATE DATABASE $db_name;"
+psql -U $username -c "CREATE DATABASE $db_name"
 psql -H $host -U $username -d $db_name -f chat_app_schema.sql
 
 ## SERVER SETUP
