@@ -25,7 +25,7 @@ Try it <a href='https://colloquy.onrender.com'>here</a>.
 * Styling relies primarily on React Bootstrap.
 * Pages are routed using React Router.
 * Websockets communication uses the socket.io-client library.
-* HTTP calls to the server's REST API are supported with the axios library.
+* HTTP calls to the server's REST API are supported with the axios library.ß
 * Webtokens are stored in localStorage for user authentication.
 
 ### Server
@@ -52,19 +52,9 @@ This app was a lot of fun to build and will continue to be a platform for experi
 ## Local Setup
 
 1. Clone this repository to your local machine.
-2. Create a virtual environment and install the dependencies from requirements.txt.
-3. Create a new PostgresSQL database using the chat_app_schema.sql file in the root directory.
-4. Create a .env file in the root directory and add the following environment variables:
-    * `DATABASE_URL` - the URL of your PostgreSQL database
-    * `SECRET_KEY` - a secret key for generating webtokens
-5. Run `python main.py` to start the server.
-6. Navigate to the client directory and run `npm install` to install the dependencies.
-7. Run `npm run dev` to start the client.
-8. Navigate to `localhost:3000` in your browser to view the app.
+2. Run the setup script by typing 'sh setup.sh' in your terminal. This will automatically install the necessary dependencies, creat the PostgreSQL database, and start the server.
+3. Navigate to `localhost:3000` in your browser to view the app.
 
 ## Author
 
 Aaron Brinckerhoff - Full-Stack Software Developer | <a href='https://www.linkedin.com/in/aaron-brinckerhoff-6b9a5340/'>LinkedIn</a> | Website
-
-
-
