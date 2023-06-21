@@ -1,6 +1,13 @@
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { AuthMethods, socketDisconnect } from '@Utils/index';
 
 function Header ({ username }) {
+
+    console.log(username)
+
+    const auth = new AuthMethods();
+    const navigate = useNavigate();
 
     const handleLogout = e => {
         e.preventDefault();
