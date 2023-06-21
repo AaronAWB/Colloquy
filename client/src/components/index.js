@@ -6,6 +6,7 @@ import Message from './Message';
 import MessagesContainer from './MessagesContainer';
 import AddChannelModal from './AddChannelModal';
 import ChannelSidebar from './ChannelSidebar';
+import Header from './Header';
 
 export { 
     withAuth, 
@@ -15,6 +16,7 @@ export {
     Message, 
     MessagesContainer, 
     AddChannelModal,
-    ChannelSidebar 
+    ChannelSidebar,
+    Header 
 } 
 

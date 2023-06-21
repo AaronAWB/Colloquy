@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ChannelList, ChatWindow, AddChannelModal } from '@Components/index';
+import { Header, ChatWindow, ChannelSidebar } from '@Components/index';
 import { AuthMethods, socket, socketConnect, socketDisconnect } from '@Utils/index';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import '@Styles/Chat.css';
 
 function Chat () {
@@ -12,15 +12,11 @@ function Chat () {
     const [username, setUsername] = useState('Guest');
     const [decodedToken, setDecodedToken] = useState("");
     const [userId, setUserId] = useState("");
-    const [showChannelModal, setShowChannelModal] = useState(false);
-
+    
     const auth = new AuthMethods();
     const navigate = useNavigate();
     const isGuest = username === 'Guest'
-    
-    const handleShowChannelModal = () => {setShowChannelModal(true)};
-    const handleHideChannelModal = () => {setShowChannelModal(false)};
-    
+        
     useEffect(() => {
         if (!auth.loggedIn()) {navigate("/login")}
         setDecodedToken(auth.decode());
@@ -51,11 +47,6 @@ function Chat () {
         navigate('/login')
         };
 
-    const handleChannelChange = (channel, previousChannel) => {
-        socket.emit('leave', previousChannel);
-        setCurrentChannel(channel);
-        };
-
     const getUsername = async () => {
         try {
             const res = await axios.get(`/api/users/${userId}`)
@@ -68,33 +59,10 @@ function Chat () {
     return (
         
         <Container>
-            <div className='logout-button-container mt-3'>
-                <p className='user-id'>
-                    Logged in as: <span className='user-id-username'>{username}</span>
-                </p>
-                <Button className ='logout-button' onClick={handleLogout}>
-                    Logout
-                </Button>
-            </div>
+            <Header />
             <Row>
             <Col md={3}>
-                <div className='mt-3 channels-title-container rounded shadow'>
-                    <h3 className='channels-title'>Channels</h3>
-                </div>
-                <div className='channel-list-container mt-3'>
-                    <ChannelList handleChannelChange={handleChannelChange} />
-                </div>
-                <Button 
-                    className='new-channel-button btn-sm mt-3' 
-                    onClick={handleShowChannelModal} 
-                    disabled={isGuest} > 
-                    +  
-                </Button>
-                <AddChannelModal 
-                    show = {showChannelModal}
-                    hide = {handleHideChannelModal}
-                    >
-                </AddChannelModal>
+                <ChannelSidebar setCurrentChannel={setCurrentChannel} isGuest={isGuest}/>
             </Col>
             <Col md={9}>
                 <ChatWindow 
