@@ -55,7 +55,7 @@ function Chat () {
             <Header username={username} />
             <Row>
             <Col md={3}>
-                <ChannelSidebar setCurrentChannel={setCurrentChannel} isGuest={isGuest}/>
+                <ChannelSidebar setCurrentChannel={setCurrentChannel} isGuest={isGuest} />
             </Col>
             <Col md={9}>
                 <ChatWindow 

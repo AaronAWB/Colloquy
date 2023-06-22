@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 import ChannelList from './ChannelList';
 import AddChannelModal from './AddChannelModal';
 import { socket } from '@Utils/index';
@@ -11,7 +10,6 @@ const channelSidebar = ({ setCurrentChannel, isGuest }) => {
 
     const [showChannelModal, setShowChannelModal] = useState(false);
 
-    
     const handleShowChannelModal = () => {setShowChannelModal(true)};
     const handleHideChannelModal = () => {setShowChannelModal(false)};
 
@@ -19,8 +17,6 @@ const channelSidebar = ({ setCurrentChannel, isGuest }) => {
         socket.emit('leave', previousChannel);
         setCurrentChannel(channel);
         };
-    
-
     
     return(
         <>

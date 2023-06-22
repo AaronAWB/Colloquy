@@ -24,7 +24,12 @@ const AddChannelModal = ({ show, hide }) => {
     };
 
     return(
-        <Modal className='add-channel-modal' centered show={show} onHide={hide} backdrop='static'>
+        <Modal 
+            className='add-channel-modal' 
+            centered show={show} 
+            onHide={hide} 
+            backdrop='static'
+            >
             <Modal.Header className='add-channel-modal-header'>
                 <Modal.Title className='modal-title text-center'>Add Channel</Modal.Title>
             </Modal.Header>
@@ -53,10 +58,18 @@ const AddChannelModal = ({ show, hide }) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer className='add-channel-modal-footer'>
-                <Button className='add-channel-modal-close-button' data-dismiss='modal' onClick={hide}>
+                <Button 
+                    className='add-channel-modal-close-button' 
+                    data-dismiss='modal' 
+                    onClick={hide}
+                    >
                     Close
                 </Button>
-                <Button className='add-channel-modal-submit-button' type='submit' onClick={handleSubmit}>
+                <Button 
+                    className='add-channel-modal-submit-button' 
+                    type='submit' 
+                    onClick={handleSubmit}
+                    >
                     Submit
                 </Button>
             </Modal.Footer>
