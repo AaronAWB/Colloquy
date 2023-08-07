@@ -52,7 +52,7 @@ This app was a lot of fun to build and will continue to be a platform for experi
 ## Local Setup
 
 1. Clone this repository to your local machine.
-2. Run the setup script by typing 'sh setup.sh' in your terminal. This will automatically install the necessary dependencies, creat the PostgreSQL database, and start the server.
+2. Run the setup script by typing 'sh setup.sh' in your terminal. This will automatically install the necessary dependencies, create the PostgreSQL database, and start the server.
 3. Navigate to `localhost:3000` in your browser to view the app.
 
 ## Author
